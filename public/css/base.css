@@ -1,0 +1,691 @@
+@font-face {
+    font-family: 'Helvetica Rounded';
+    src: url(../webfonts/HelveticaRounded-Bold.otf) format("opentype");
+
+}
+@font-face {
+    font-family: 'Helvetica Rounded Condensed';
+    src: url(../webfonts/HelveticaRounded-BoldCond.otf) format("opentype");
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Rounded', Helvetica, Arial, sans-serif;
+    color: #B5C1BA;
+    text-decoration: none;
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-family: 'Helvetica Rounded Condensed', Helvetica, Arial, sans-serif;
+}
+
+h3 {
+    font-size: 40px;
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+.btn {
+    color: #303031;
+    background-color: #dfd6cb;
+    border-radius: 2em;
+    padding: 1em 2em 1em 2em;
+    text-align:center;
+    position: relative;
+}
+
+.btn a {
+    color: #303031;
+}
+
+.btn:hover {
+    background-color: #303031;
+    color: #dfd6cb;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover a{
+    color: #dfd6cb;
+}
+
+/****************** HEADER *******************/
+
+header {
+    width: 100%;
+    height: 80px;
+    max-height: 80px;
+    background-color: #303031;
+    border-bottom: #B5C1BA solid 2px;
+    position: fixed;
+    z-index: 9000;
+}
+
+    #header_container {
+        height: 80px;
+        max-height: 80px;
+        padding-left: 10%;
+        padding-right: 10%; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+    }
+
+    .logos {
+        height: 80px;
+        max-height: 80px;
+        display: flex;
+        align-items: center;
+    }
+
+    .logos_sociaux {
+        padding-top: 1em;
+    }
+
+        .logos_sociaux img {
+            width: 1.2em;
+            margin-right: 0.5em;
+        }
+
+    #achat {
+        border: #B5C1BA solid 2px;
+        border-radius: 20px;
+    }
+
+    nav li {
+        display: inline-block;
+        align-items: center;
+    }
+
+        li a, li #achat {
+            border-radius: 20px;
+            padding: 0.5em 1em 0.5em 1em;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+    nav a:hover, #achat:hover {
+        background-color: #B5C1BA ;
+        color: #303031;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+.achat_resume {
+    visibility: hidden;
+    background-color: rgba(48, 48, 49, 0.8);
+    max-width: 100%;
+    height: 930px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.achat_container {
+    background-color:#f5f5f5;
+    height: 865px;
+    width: 35%;
+    max-width: 40%;
+    padding: 1em 1em 3em 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    position: relative;
+}
+
+    .achat_container div{
+        display: flex;
+        justify-content:center;
+    }
+
+    .achat_container li {
+        margin-bottom: 0.8em;
+        color: #303031;
+    }
+
+    .achat_container img {
+        max-width: 80px;
+        width: 80px;
+    }
+
+/****************** FOOTER *******************/
+
+footer {
+    width: 100%;
+    height: 80px;
+    max-height: 80px;
+    background-color: #303031;
+    border-top: #B5C1BA solid 2px;
+}
+
+    #footer_container {
+        height: 80px;
+        max-height: 80px;
+        padding-left: 10%;
+        padding-right: 10%; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+    }
+
+/*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
+
+/****************** SECTION-1 INTRO *******************/
+
+.intro_container {
+    max-width: 100%;
+    background-image: url(../img/fond_base.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 920px;
+    padding-top: 5%;
+    padding-left: 10%;
+    padding-right: 10%; 
+}
+
+    .intro_container h1 {
+        left: -2000px;
+        width: 450px;
+        position: relative;
+        font-size: 50px;
+        color: #f5f5f5;
+        text-align: right;
+        max-height: 120px;
+        margin-top: 120px;
+        margin-bottom: 80px;
+    }
+
+    .intro_container div {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+        .intro_container div div{
+            margin-left: 1.8em;
+        }
+
+.btnleft, .btnright {
+    opacity: 0%;
+}
+
+/****************** SECTION-2 CAROUSEL *******************/
+
+.sec_carousel {
+    max-width: 100%;
+    height: 460px;
+    background-color: #f5f5f5;
+    padding: 0 10% 0 10%;
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+    .arrow_left p, .arrow_right p{
+        font-size: 80px;
+        color: #B5C1BA;
+        cursor: pointer;
+        z-index: 8000;
+    }
+
+    .arrow_left p:hover, .arrow_right p:hover{
+        font-size: 80px;
+        color: #303031;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .carousel_container {
+        max-width: 100%;
+        height: 460px;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content:center;
+    }
+
+        .carousel_item {
+            max-height: 460px;
+            position: relative;
+            display: none;
+        }
+
+        .carousel_item.active {
+            display: flex;
+        }
+
+        .carousel_item img {
+            max-width:100%;
+            max-height:100%;
+        }
+
+        .carousel_item span {
+            max-height: 460px;
+            max-width: 100%;
+            width: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 240px;
+        }
+
+            .carousel_item p {
+                font-size: 30px;
+                color: #B5C1BA ;
+                text-align: center;
+                background-color: rgba(48, 48, 49, 0.8);
+                border-radius: 2em;
+                padding: 0.5em;
+                margin-bottom: 1.5em;
+                white-space: nowrap;
+            }
+
+.active {
+    animation: fade 0.8s;
+}
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/****************** SECTION-3 RENOVATION *******************/
+
+.sec_renov {
+    height: 460px;
+    background-color: #f5f5f5;
+    padding: 0 10% 0 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .sec_renov h3, .sec_renov h4, .sec_renov p, .sec_renov a {
+        color: #303031;
+    }
+
+    .renov_container {
+        height: 410px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.8em; 
+    }
+
+        .renov_container div {
+            width: 30%;
+            max-height: 410px;
+        }
+
+            .sec_renov li {
+                color: #303031;
+                list-style-type: disc;
+            }
+
+            .renov_container img {
+                max-width: 100%;
+                width: 100%;
+            }
+
+.renov_container p, .renov_container li{
+    margin-top: 1.8em;
+    margin-bottom: 1.8em;
+}
+
+.plus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/****************** SECTION-4 ABOUT *******************/
+
+.sec_about {
+    height: 460px;
+    background-color: #303031;
+    padding: 0 10% 0 10%;
+}
+
+.our_values {
+    height: 460px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+}
+
+.our_values div {
+    width: 30%;
+    max-height: 460px;
+}
+
+.sec_about p{
+    margin-top: 1.8em;
+    margin-bottom: 1.8em;
+}
+
+/****************** SECTION-5 INFO *******************/
+
+.sec_info {
+    height: 460px;
+    background-color: #f5f5f5;
+    padding: 0 10% 0 10%;
+}
+
+.informations {
+    height: 460px;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+
+}
+
+.informations div {
+    width: 30%;
+    max-height: 460px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.sec_info p{
+    margin-top: 1.8em;
+    margin-bottom: 1.8em;
+    text-align: center;
+    color: #303031;
+}
+
+.sec_info a{
+    margin-bottom: 2em;
+    text-align: center;
+    color: #303031;
+}
+
+.adresse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logos_sociaux2 {
+    display: flex;
+    justify-content:space-between;
+}
+
+.aide {
+    display: flex;
+    flex-direction: column;
+}
+
+.sec_info h4{
+    text-align: center;
+    color: #303031;
+    font-family: 'Helvetica Rounded', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    margin-bottom: 1.8em;
+}
+
+.form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.form .btn {
+    border: hidden;
+}
+
+.form form span {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.8em;
+}
+
+.form form p {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form form span label{
+    color: #303031;
+    margin-left: 10px;
+}
+
+#email {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 2em;
+    border-color: #303031;
+    padding: 0.8em;
+}
+
+/*//////////////////////////////// PAGE - CGU - CGV ////////////////////////////////*/
+
+.cgucgv div{
+    padding: 10%;
+}
+
+.cgucgv p{
+    text-align:center;
+    color: #303031;
+}
+
+/*//////////////////////////////// PAGE - FAQ ////////////////////////////////*/
+
+.faq div{
+    padding: 10%;
+}
+
+.faq p, .faq h1{
+    text-align:center;
+    color: #303031;
+}
+
+.faq h1 {
+    font-size: 40px;
+}
+
+/*//////////////////////////////// PAGE - RENOVATION ////////////////////////////////*/
+
+/****************** Partie - 1 *******************/
+
+.renovation h2, .renovation p, .renovation label {
+    color: #303031;
+}
+
+.renovation b, .renovation h2 {
+    color: #303031;
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.renovation h1 {
+    color: #303031;
+    font-size: 50px;    
+}
+
+.arrow_down a, .arrow_down a{
+    font-size: 80px;
+    color: #B5C1BA;
+    cursor: pointer;
+    z-index: 8000;
+}
+
+.arrow_down a:hover, .arrow_down a:hover{
+    font-size: 80px;
+    color: #303031;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.renovation {
+    height: 920px;
+    background-color: #f5f5f5;
+    padding: 80px 10% 0 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.renovation_container {
+    display: flex;
+    align-items: center;
+}
+
+.card_renov{
+    display: flex;
+    margin:2em;
+    align-items: center;
+}
+
+.card_renov div{
+    margin:2em;
+}
+
+.check_condition {
+    margin:2em 0 !important;
+}
+
+/****************** Partie - 2 *******************/
+.renov_forfait {
+    height: 980px;
+    background-color: #f5f5f5;
+    padding: 0 10% 0 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.renov_forfait {
+    height: 820px;
+    background-color: #303031;
+}
+
+.renov_forfait div{
+    display: flex;
+    margin: 3em;
+}
+
+.card_forfait{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 350px;
+    margin-left: 8em !important;
+    margin-right: 8em !important;
+}
+
+.renov_forfait h2, .renov_forfait p{
+    text-align:center;
+}
+
+.renov_forfait h2 {
+    font-size: 40px;
+    margin-bottom: 0.5em;
+}
+
+.renov_forfait b {
+    font-size: 30px;
+}
+
+.renov_forfait a {
+    text-decoration: solid;
+}
+
+/*//////////////////////////////// PAGE - CONTACT ////////////////////////////////*/
+
+.contact {
+    height: 420px;
+    background-color: #f5f5f5;
+    padding: 80px 10% 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+
+.bg {
+    max-width: 100%;
+    background-image: url(../img/fond_contact.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 395px;
+}
+
+.contact div {
+    width: 50%;
+    max-height: 420px;
+    padding-top: 25px;
+}
+
+.contactez {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contactez h4, .contactez p {
+    color: #303031;
+}
+
+.logos_sociaux_contact {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.form_contact {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form_contact form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.form_contact .btn {
+    border: hidden;
+}
+
+.form_contact form span {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    margin: 1em 0;
+}
+
+.form_contact form p {
+    width: 100%;
+    max-width: 100%;
+    color: #303031;
+    margin: 1em 0;
+}
+
+.form_contact form span label{
+    color: #303031;
+    margin-left: 10px;
+}
+
+#email_contact, #name_contact, #comment_contact {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 2em;
+    border-color: #303031;
+    padding: 0.8em;
+    margin: 0.8em;
+}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}rénovation{% endblock %}
+
+{% block body %}
+
+    <section class="renovation">
+        <h1>Nos offres de rénovation</h1>
+        <div class="renovation_container">
+            <div>
+                <img src="assets/img/bi-prise_web.png" alt="exemple de prise avant et après rénovation">
+            </div>
+            <div>
+                <div class="card_renov">
+                    <div>
+                        <h2>Forfait standard</h2><br>
+                        <p><b>150 €</b><br><br>
+                            pour la première des conditions atteintes : 100 kg ou 30 pièces.
+                        <div class="check_condition">
+                            <span>
+                                <input type="checkbox" name="check">
+                                <label for="check">J’ai lu et j’accepte les conditions énoncé dans la documentation de validation.</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <a href="#">Ajouter au panier</a>
+                    </div>
+                </div>
+                <div class="card_renov">
+                    <div>
+                        <h2>Forfait standard</h2><br>
+                        <p><b>150 €</b><br><br>
+                            pour la première des conditions atteintes : 100 kg ou 30 pièces.
+                        <div class="check_condition">
+                            <span>
+                                <input type="checkbox" name="check">
+                                <label for="check">J’ai lu et j’accepte les conditions énoncé dans la documentation de validation.</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <a href="#">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="arrow_down">
+            <a href="index.php?page=renovation#renovation_forfait">v</a>
+        </div>
+
+    </section>
+
+    <section class="renov_forfait" id="renovation_forfait">
+        <div>
+            <div class="card_forfait">
+                <h2>Forfait standard</h2>
+                <p>-----------------------------------------------------<br><br>
+                    <b>150 €</b><br><br>
+                    pour la première des conditions atteintes : 100 kg ou 30 pièces<br><br>
+                    -----------------------------------------------------<br><br>
+                    Bleautop se réserve un droit de refus si les pièces envoyés ne correspondent pas aux critères de validations.<br><br>
+                    Couleurs : Noir / blanc / rouge / bleu / vert / jaune / orange / violet<br><br>
+                    Le forfait est valable 1 an à partir de la date de facturation.
+                </p>
+            </div>
+            <div class="card_forfait">
+                <h2>Forfait Premium</h2>
+                <p>-----------------------------------------------------<br><br>
+                <b>400 €</b><br><br>
+                pour la première des conditions atteintes : 300 kg ou 100 pièces<br><br>
+                -----------------------------------------------------<br><br>
+                Bleautop se réserve un droit de refus si les pièces envoyés ne correspondent pas aux critères de validations.<br><br>
+                Couleurs : Noir / blanc / rouge / bleu / vert / jaune / orange / violet<br><br>
+                Le forfait est valable 1 an à partir de la date de facturation.
+                </p>
+            </div>
+        </div>
+        <div>
+            <a href="#">Télécharger la documentation : critères de validations (pdf)</a>
+        </div>
+    </section>
+
+{% endblock %}

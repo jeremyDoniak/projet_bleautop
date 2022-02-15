@@ -4,4 +4,150 @@
 
 {% block body %}
 
+<section class="intro_container">
+    <div>
+        <h1>'Grimper Bleautop, <br> grimper Fontainebleau'</h1>
+    </div>
+    <div>
+        <div class="btn btnleft">
+            <a href="{{ path('produits') }}">Produits</a>
+        </div>
+        <div class="btn btnright">
+            <a href="{{ path('renovation') }}">Rénovation</a>
+        </div>
+    </div>
+</section>
+
+<section class="sec_carousel">
+    <div class="arrow_left">
+        <p><</p>
+    </div>
+    <div class="carousel_container">
+        <div class="carousel_item active">
+            <img src="{{ asset('img/pack_ouverture.png') }}" alt="le pack ouverture est une sélections de prise pour créer sa première ouverture de voie">
+            <span>
+                <p>Pack ouverture</p>
+                <div class="btn">
+                    <a href="{{ path('produits') }}">+ infos</a>
+                </div>
+            </span>
+        </div>
+        <div class="carousel_item">
+            <img src="{{ asset('img/pack_standard.png') }}" alt="le pack ouverture est une sélections de prise pour créer toutes sortes d'ouverture de voie">
+            <span>
+                <p>Pack standard</p>
+                <div class="btn">
+                    <a href="{{ path('produits') }}">+ infos</a>
+                </div>
+            </span>
+        </div>
+        <div class="carousel_item">
+            <img src="{{ asset('img/pack_competition.png') }}" alt="le pack compétition est une sélections de prise pour créer des ouvertures de hauts niveaux">
+            <span>
+                <p>Pack compétition</p>
+                <div class="btn">
+                    <a href="{{ path('produits') }}">+ infos</a>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div class="arrow_right">
+        <p>></p>
+    </div>
+</section>
+
+<section class="sec_renov">
+    <h3>Rénovation</h3>
+    <div class="renov_container">
+        <div>
+            <h4>Nos objectifs :</h4>
+            <ul>
+                <li>Permettre la réduction de matières dangereuses et polluantes (Polyuréthane / Polyester …),</li>
+                <li>limiter la fabrication de prises « neuves » en réutilisation de la matière existante (prises, volumes…) et ainsi repousser l’incinération de matière polluante.</li>
+                <li>Permettre aux réseaux et salles privées de réinjecter ses prises dans leur exploitation</li>
+            </ul>
+        </div>
+        <div>
+            <img src="{{ asset('img/bi-prise_web.png') }}" alt="exemple de prise avant et après rénovation">
+        </div>
+        <div class="plus">
+            <p>Engagé dans le pacte “d’économie circulaire” de l’ADEM, Bleautop propose aussi une solution novatrice : la rénovation des prises et volumes plastique !</p>
+            <p>Nous proposons des forfaits de rénovations de prises et volumes d’escalades usagés.</p>
+            <div class="btn">
+                <a href="{{ path('renovation') }}">En savoir plus</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sec_about" class="sec_about">
+    <div class="our_values">
+        <div>
+            <h3>Qui sommes-nous ?</h3>
+            <p>Créée en 2015 , Bleautop est une entreprise spécialisée dans la fabrication de prises et volumes d’escalade, destinés aux salles d’escalade et particuliers.
+                <br><br>Notre objectif est de reproduire le touché du grès mythique de Fontainebleau et proposer des prises uniques permettant que la magie de Fontainebleau soit (aussi) disponible dans les salles d’escalade !
+                <br><br>Nos préhensions sont exigeantes et ne peuvent pas blesser à la différence de bon nombre de volumes industriels !</p>
+        </div>
+        <div>
+            <h3>Nos valeurs</h3>
+            <p>Dans un soucis d’écologie nos volumes sont construits uniquement en bois et offrent un toucher encore inconnu dans le monde de l’escalade artificielle.
+                <br><br>En effet toutes les arêtes sont arrondies et profilées selon les sensations uniques que procure ce lieu magique qu’est la forêt de fontainebleau.
+                <br><br>Le grain des volumes est constitué du sable fin de cet endroit unique au monde pour un rendu le plus proche possible de celui de ce rocher tant apprécié des grimpeurs du monde entier.</p>
+        </div>
+        <div>
+            <h3>Partenarias</h3>
+            <p>Les grimpeurs qui nous font confiance : <br>
+                <br>Oliver Lebreton,
+                <br>Thomas Collignon,
+                <br>David Evrard,
+                <br>Tony Fouchereau.<br>
+                <br>Nous sommes en partenaria avec L’Office Nationale des Forêts et Natura 2000 pour la préservation de la forêt de Fontainebleau.
+                <br><br>Nous sommes déjà présent chez Arkose, climb’up, bloc’out et vertical art.</p>
+        </div>
+    </div>
+</section>
+
+<section class="sec_info">
+    <div class="informations">
+        <div class="adresse">
+            <h4>Adresse</h4>
+            <p>Bleautop SARL
+                <br><br>7, boulevard Guibert
+                <br>35 317 PottierVille
+                <br>+33228632669
+            </p>
+            <div class="logos_sociaux2">
+                <a href="https://www.instagram.com/">
+                    <img src="{{ asset('img/logo_instagram_noir_web.png') }}" alt="logo instagram">
+                </a>
+                <a href="https://www.facebook.com/">
+                    <img src="{{ asset('img/logo_facebook_noir_web.png') }}" alt="logo facebook">
+                </a>
+                <a href="https://twitter.com/">
+                    <img src="{{ asset('img/logo_twitter_noir_web.png') }}" alt="logo twitter">
+                </a>
+            </div>
+        </div>
+        <div class="aide">
+            <h4>Aide et services</h4>
+            <a href="{{ path('cgu_cgv') }}">CGU-CGV</a>
+            <a href="{{ path('faq') }}">FAQ</a>
+            <a href="{{ path('contact') }}">Contact</a>
+        </div>
+        <div class="form">
+            <h4>Newsletter</h4>
+            <form action="#" method="post">
+                <input type="email" name="email" id="email" placeholder="renseigner votre email" size="60">
+                <span>
+                    <input type="checkbox" name="check">
+                    <label for="check">Vous acceptez de recevoir nos dernières publication par email.</label>
+                </span>
+                <p>Vous affirmez avoir pris connaissance de notre Politique de confidentialité. Vous pouvez vous désinscrire à tout moment à l’aide des liens de désinscription ou en nous contactant à l’adresse bleautop@bleautop.fr</p>
+                <input type="submit" value="Valider" class="btn">
+            </form>
+
+        </div>
+    </div>
+</section>
+
 {% endblock %}
