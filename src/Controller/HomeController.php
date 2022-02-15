@@ -16,58 +16,58 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/home', name: 'produits')]
+    #[Route('/produits', name: 'produits')]
     public function produits(): Response
     {
-        return $this->render('home/produits.html.twig', [
+        return $this->render('/home/produits.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'renovation')]
+    #[Route('/renovation', name: 'renovation')]
     public function renovation(): Response
     {
-        return $this->render('home/renovation.html.twig', [
+        return $this->render('/home/renovation.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'home#sec_about')]
+    #[Route('/home#sec_about', name: 'home#sec_about')]
     public function homeSecAbout(): Response
     {
-        return $this->render('home/home#sec_about.html.twig', [
+        return $this->render('/home/home#sec_about.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'contact')]
+    #[Route('/contact', name: 'contact')]
     public function contact(): Response
     {
-        return $this->render('home/contact.html.twig', [
+        return $this->render('/home/contact.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'achat')]
+    #[Route('/achat', name: 'achat')]
     public function achat(): Response
     {
-        return $this->render('home/achat.html.twig', [
+        return $this->render('/home/achat.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'cgu_cgv')]
+    #[Route('/cgu_cgv', name: 'cgu_cgv')]
     public function cguCgv(): Response
     {
-        return $this->render('home/cgu_cgv.html.twig', [
+        return $this->render('/home/cgu_cgv.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home', name: 'faq')]
+    #[Route('/faq', name: 'faq')]
     public function faq(): Response
     {
-        return $this->render('home/faq.html.twig', [
+        return $this->render('/home/faq.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }

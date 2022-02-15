@@ -4,4 +4,46 @@
 
 {% block body %}
 
+<section class="contact">
+    <div class="contactez">
+        <h4>Contactez-nous</h4><br><br>
+        <p>Margot-Margaud Fernandez<br>
+            Bleautop SARL<br>
+            81934680071<br>
+            <br>7, boulevard Guibert
+            <br>35 317 PottierVille
+            <br>+33228632669
+        </p>
+        <div class="logos_sociaux_contact">
+            <a href="https://www.instagram.com/">
+                <img src="assets/img/logo_instagram_noir_web.png" alt="logo instagram">
+            </a>
+            <a href="https://www.facebook.com/">
+                <img src="assets/img/logo_facebook_noir_web.png" alt="logo facebook">
+            </a>
+            <a href="https://twitter.com/">
+                <img src="assets/img/logo_twitter_noir_web.png" alt="logo twitter">
+            </a>
+        </div>
+    </div>
+    <div class="form_contact">
+        <form action="#" method="post">
+            <input type="text" name="name" id="name_contact" placeholder="Votre nom" size="60">
+            <input type="email" name="email" id="email_contact" placeholder="Votre email" size="60">
+            <input type="textarea" name="comment" id="comment_contact" placeholder="Votre message" rows="60" cols="60" size="60">
+            <span>
+                <input type="checkbox" name="check">
+                <label for="check">Vous acceptez de recevoir nos dernières publication par email.</label>
+            </span>
+            <p>Vous affirmez avoir pris connaissance de notre Politique de confidentialité. Vous pouvez vous désinscrire à tout moment à l’aide des liens de désinscription ou en nous contactant à l’adresse bleautop@bleautop.fr</p>
+            <input type="submit" value="Valider" class="btn">
+        </form>
+
+    </div>
+</section>
+
+<section class="bg">
+
+</section>
+
 {% endblock %}

@@ -14,8 +14,8 @@
     padding: 0;
     font-family: 'Helvetica Rounded', Helvetica, Arial, sans-serif;
     color: #B5C1BA;
-    text-decoration: none;
-    list-style: none;
+    text-decoration: none !important;
+    list-style: none !important;
 }
 
 h1, h2, h3 {
@@ -42,6 +42,7 @@ p {
 
 .btn a {
     color: #303031;
+    text-align:center;
 }
 
 .btn:hover {
@@ -94,7 +95,11 @@ header {
 
     #achat {
         border: #B5C1BA solid 2px;
-        border-radius: 20px;
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
     }
 
     nav li {
@@ -107,11 +112,12 @@ header {
             padding: 0.5em 1em 0.5em 1em;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
+            color: #B5C1BA !important;
         }
 
     nav a:hover, #achat:hover {
         background-color: #B5C1BA ;
-        color: #303031;
+        color: #303031 !important;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
     }
@@ -171,6 +177,11 @@ footer {
         justify-content: space-between;
         align-items: center;  
     }
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
 
 /*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
 
@@ -340,9 +351,16 @@ footer {
 }
 
 .plus {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.plus .btn {
+    white-space: nowrap;
+    width: 40%;
 }
 
 /****************** SECTION-4 ABOUT *******************/
