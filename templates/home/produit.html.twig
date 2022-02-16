@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}produits{% endblock %}
+
+{% block body %}
+
+<section class="produit">
+    <div>
+        <ul>
+            <li>
+                <a href="{{ path('produits_renovation') }}">Rénovation</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_packs') }}">Packs</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_volumes') }}">Volumes</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_prises') }}">Prises</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card_produit">
+        <div>
+            <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+        </div>
+        <div>
+            <h3>ISATIS</h3>
+            <p>
+                ----------------------------------------------------------------------------------------------------<br>
+                <b>150 €</b><br>
+                long. : 90,00 cm/ larg. : 27,00 cm/ hauteur : 12,00 cm<br>
+                ----------------------------------------------------------------------------------------------------<br>
+                Typologie:<br><br>
+                Droite Gauche Paire<br><br>
+                Taille:<br><br>
+                Small Medium Large Extralarge<br><br>
+                Angle d’ouverture:<br><br>
+                Flatten Normal Expand<br><br>
+                Option trâme (espace 10cm) :<br><br>
+                Couleurs : Noir / blanc / rouge / bleu / vert / jaune / orange / violet
+            </p>
+        </div>
+    </div>
+    <div class="btn">
+        <a href="#">Ajouter au panier</a>
+    </div>
+</section>
+
+{% endblock %}
