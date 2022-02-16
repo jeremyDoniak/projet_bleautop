@@ -32,14 +32,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/home#sec_about', name: 'home#sec_about')]
-    public function homeSecAbout(): Response
-    {
-        return $this->render('/home/home#sec_about.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
     #[Route('/contact', name: 'contact')]
     public function contact(): Response
     {
