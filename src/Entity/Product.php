@@ -22,9 +22,6 @@ class Product
     #[ORM\Column(type: 'float')]
     private $price;
 
-    #[ORM\Column(type: 'string', length: 45)]
-    private $category;
-
     #[ORM\Column(type: 'text')]
     private $description;
 
@@ -51,6 +48,10 @@ class Product
 
     #[ORM\ManyToOne(targetEntity: Drilling::class, inversedBy: 'products')]
     private $drilling;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
 
     public function getId(): ?int
     {
@@ -89,18 +90,6 @@ class Product
     public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -209,6 +198,18 @@ class Product
     public function setDrilling(?Drilling $drilling): self
     {
         $this->drilling = $drilling;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

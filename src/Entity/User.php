@@ -35,9 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
     private $company;
 
-    #[ORM\Column(type: 'string', length: 45)]
-    private $role;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
     private $addresses;
 
@@ -171,18 +168,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompany(?string $company): self
     {
         $this->company = $company;
-
-        return $this;
-    }
-
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
 
         return $this;
     }
