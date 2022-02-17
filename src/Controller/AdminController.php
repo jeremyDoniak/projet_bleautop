@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
@@ -17,18 +19,20 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin_produits', name: 'admin_produits')]
-    public function produits(): Response
+    public function produits(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('admin/produits.html.twig', [
-            'controller_name' => 'AdminController',
+            'products' => $products,
         ]);
     }
 
     #[Route('/admin_utilisateurs', name: 'admin_utilisateurs')]
-    public function utilisateurs(): Response
+    public function utilisateurs(UserRepository $userRepository): Response
     {
+        $users = $userRepository->findAll();
         return $this->render('admin/utilisateurs.html.twig', [
-            'controller_name' => 'AdminController',
+            'users' => $users,
         ]);
     }
 }
