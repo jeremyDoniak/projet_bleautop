@@ -18,20 +18,20 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin_produits', name: 'admin_produits')]
+    #[Route('/admin_products', name: 'admin_products')]
     public function produits(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findAll();
-        return $this->render('admin/produits.html.twig', [
+        return $this->render('admin/products.html.twig', [
             'products' => $products,
         ]);
     }
 
-    #[Route('/admin_utilisateurs', name: 'admin_utilisateurs')]
+    #[Route('/admin_users', name: 'admin_users')]
     public function utilisateurs(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
-        return $this->render('admin/utilisateurs.html.twig', [
+        return $this->render('admin/users.html.twig', [
             'users' => $users,
         ]);
     }

@@ -1,0 +1,71 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}produit{% endblock %}
+
+{% block body %}
+
+    {{ form_start(productForm) }}
+
+        <div class="row">
+            <div class="col-9">
+                {{ form_row(productForm.name, {'label': 'Nom'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(productForm.category, {'label': 'Categorie'})}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                {{ form_row(productForm.size, {'label': 'Taille'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(productForm.color, {'label': 'Couleur'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(productForm.angle, {'label': 'Angle'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(productForm.drilling, {'label': 'Trâme'}) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(productForm.types, {'label': 'types'})}}
+            </div>
+            <div class="col-6">
+                {{ form_row(productForm.price, {'label': 'Prix'}) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                {{ form_row(productForm.height, {'label': 'Hauteur'}) }}
+            </div>
+            <div class="col-4">
+                {{ form_row(productForm.width, {'label': 'Largeur'}) }}
+            </div>
+            <div class="col-4">
+                {{ form_row(productForm.length, {'label': 'Longueur'}) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(productForm.img, {'label': 'Photo'}) }}
+            </div>
+        </div>
+
+        <div class="col-12">
+            {{ form_row(productForm.description, {'label': 'Description'}) }}
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_product_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer</button>
+        </div>
+        
+    {{ form_end(productForm) }}
+
+{% endblock %}
