@@ -22,7 +22,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/products', name: 'admin_product_index')]
+    #[Route('/admin/products', name: 'admin_products_index')]
     public function adminIndex(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findAll();
@@ -31,7 +31,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/product/create', name: 'product_create')]
+    #[Route('/admin/products/create', name: 'products_create')]
     public function create(Request $request, ManagerRegistry $managerRegistry)
     {
         $product = new Product();

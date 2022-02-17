@@ -4,51 +4,48 @@
 
 {% block body %}
 
-    <section>
-        <h1>Liste des produits</h1>
+    <h1>Liste des produits</h1>
 
-        <table class="table text-center table-hover table-sm">
-            <thead>
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Name</th>
+                <th>Img</th>
+                <th>Types</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Angle</th>
+                <th>Drilling</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
                 <tr>
-                    <th>N°</th>
-                    <th>Name</th>
-                    <th>Img</th>
-                    <th>Types</th>
-                    <th>Size</th>
-                    <th>Color</th>
-                    <th>Angle</th>
-                    <th>Drilling</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Actions</th>
+                    <td class="align-middle">{{ loop.index }}</td>
+                    <td class="align-middle">{{ product.name }}</td>
+                    <td class="align-middle"><img src="{{ asset('img/' ~ product.img) }}" alt="photo principale {{ product.name }}"></td>
+                    <td class="align-middle">{{ product.types }}</td>
+                    <td class="align-middle">{{ product.size }}</td>
+                    <td class="align-middle">{{ product.color }}</td>
+                    <td class="align-middle">{{ product.angle }}</td>
+                    <td class="align-middle">{{ product.drilling }}</td>
+                    <td class="align-middle">{{ product.price }} €</td>
+                    <td class="align-middle">{{ product.category }}</td>
+                    <td class="align-middle">
+                        <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td class="align-middle">{{ loop.index }}</td>
-                        <td class="align-middle">{{ product.name }}</td>
-                        <td class="align-middle"><img src="{{ asset('img/' ~ product.img) }}" alt="photo principale {{ product.name }}"></td>
-                        <td class="align-middle">{{ product.types }}</td>
-                        <td class="align-middle">{{ product.size }}</td>
-                        <td class="align-middle">{{ product.color }}</td>
-                        <td class="align-middle">{{ product.angle }}</td>
-                        <td class="align-middle">{{ product.drilling }}</td>
-                        <td class="align-middle">{{ product.price }} €</td>
-                        <td class="align-middle">{{ product.category }}</td>
-                        <td class="align-middle">
-                            <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                            <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            {% endfor %}
+        </tbody>
+    </table>
 
-        <div class="d-flex justify-content-end my-5">
-            <a href="{{ path('product_create') }}" class="btn btn-success">Ajouter un produit</a>
-        </div>
-
-    </section>
+    <div class="d-flex justify-content-end my-5">
+        <a href="{{ path('products_create') }}" class="btn">Ajouter un produit</a>
+    </div>
 
 {% endblock %}
