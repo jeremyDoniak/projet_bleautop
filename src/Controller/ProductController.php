@@ -22,6 +22,54 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[Route('/produits', name: 'produits')]
+    public function produits(): Response
+    {
+        return $this->render('/product/produits.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/produit', name: 'produit')]
+    public function produit(): Response
+    {
+        return $this->render('/product/produit.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/produits_packs', name: 'produits_packs')]
+    public function produitsPacks(): Response
+    {
+        return $this->render('/product/produits_packs.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/produits_prises', name: 'produits_prises')]
+    public function produitsPrises(): Response
+    {
+        return $this->render('/product/produits_prises.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/produits_renovation', name: 'produits_renovation')]
+    public function produitsRenovation(): Response
+    {
+        return $this->render('/product/produits_renovation.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    #[Route('/produits_volumes', name: 'produits_volumes')]
+    public function produitsVolumes(): Response
+    {
+        return $this->render('/product/produits_volumes.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+    
     #[Route('/admin/products', name: 'admin_products_index')]
     public function adminIndex(ProductRepository $productRepository): Response
     {
@@ -48,10 +96,11 @@ class ProductController extends AbstractController
             $manager->persist($product);
             $manager->flush();
             $this->addFlash('success', 'Le produit a bien été ajouté');
-            return $this->redirectToRoute('admin_product_index');
+            return $this->redirectToRoute('admin_products_index');
         }
         return $this->render('admin/productForm.html.twig', [
             'productForm' => $form->createView()
         ]);
     }
+
 }

@@ -27,8 +27,23 @@
                     <td class="align-middle">{{ user.email }}</td>
                     <td class="align-middle">{{ user.phone }}</td>
                     <td class="align-middle">{{ user.company }}</td>
-                    {# <td class="align-middle">{{ user.addresses }}</td> #}
-                    {# <td class="align-middle">{{ user.roles }}</td> #}
+                    <td class="align-middle">
+                        {% for address in user.addresses %}
+                            <ul>
+                                <li>{{ address.address1 }}</li>
+                                <li>{{ address.address2 }}</li>
+                                <li>{{ address.zipCode }}</li>
+                                <li>{{ address.city }}</li>
+                            </ul>
+                        {% endfor %}
+                    </td>
+                    <td class="align-middle">
+                        <ul>
+                            {% for role in user.roles %}
+                                <li>{{ role }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
                     <td class="align-middle">
                         <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
                         <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>

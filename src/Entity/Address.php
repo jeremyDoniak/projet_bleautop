@@ -57,12 +57,12 @@ class Address
         return $this;
     }
 
-    public function getZipCode(): ?string
+    public function getZipCode(): ?int
     {
         return $this->zip_code;
     }
 
-    public function setZipCode(string $zip_code): self
+    public function setZipCode(int $zip_code): self
     {
         $this->zip_code = $zip_code;
 

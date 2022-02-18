@@ -16,14 +16,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/produits', name: 'produits')]
-    public function produits(): Response
-    {
-        return $this->render('/home/produits.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
     #[Route('/renovation', name: 'renovation')]
     public function renovation(): Response
     {
@@ -64,43 +56,5 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/produit', name: 'produit')]
-    public function produit(): Response
-    {
-        return $this->render('/home/produit.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
 
-    #[Route('/produits_packs', name: 'produits_packs')]
-    public function produitsPacks(): Response
-    {
-        return $this->render('/home/produits_packs.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
-    #[Route('/produits_prises', name: 'produits_prises')]
-    public function produitsPrises(): Response
-    {
-        return $this->render('/home/produits_prises.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
-    #[Route('/produits_renovation', name: 'produits_renovation')]
-    public function produitsRenovation(): Response
-    {
-        return $this->render('/home/produits_renovation.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
-    #[Route('/produits_volumes', name: 'produits_volumes')]
-    public function produitsVolumes(): Response
-    {
-        return $this->render('/home/produits_volumes.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
 }
