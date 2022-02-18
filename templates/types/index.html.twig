@@ -1,0 +1,62 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}types{% endblock %}
+
+{% block body %}
+
+<section class="produits">
+    <div>
+        <ul>
+            <li>
+                <a href="{{ path('produits_renovation') }}">Rénovation</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_packs') }}">Packs</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_volumes') }}">Volumes</a>
+            </li>
+            <li>
+                <a href="{{ path('produits_prises') }}">Prises</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card_produits_container">
+        <div class="card_produits">
+            <div>
+                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+            </div>
+            <div>
+                <h3>ISATIS DROITE GRIS</h3>
+            </div>
+            <div class="btn">
+                <a href="{{ path('produit') }}">+ info</a>
+            </div>
+        </div>
+        <div class="card_produits">
+            <div>
+                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+            </div>
+            <div>
+                <h3>ISATIS DROITE GRIS</h3>
+            </div>
+            <div class="btn">
+                <a href="{{ path('produit') }}">+ info</a>
+            </div>
+        </div>
+        <div class="card_produits">
+            <div>
+                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+            </div>
+            <div>
+                <h3>ISATIS DROITE GRIS</h3>
+            </div>
+            <div class="btn">
+                <a href="{{ path('produit') }}">+ info</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

@@ -24,18 +24,18 @@
         </thead>
         <tbody>
             {% for product in products %}
-                <tr>
-                    <td class="align-middle">{{ loop.index }}</td>
-                    <td class="align-middle">{{ product.name }}</td>
-                    <td class="align-middle"><img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}"></td>
-                    <td class="align-middle">{{ product.types.name|default('-') }}</td>
-                    <td class="align-middle">{{ product.size.name|default('-') }}</td>
-                    <td class="align-middle">{{ product.color.name|default('-') }}</td>
-                    <td class="align-middle">{{ product.angle.name|default('-') }}</td>
-                    <td class="align-middle">{{ product.drilling.name|default('-') }}</td>
-                    <td class="align-middle">{{ product.price }} €</td>
-                    <td class="align-middle">{{ product.category.title }}</td>
-                    <td class="align-middle">
+                <tr class="align-middle">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ product.name }}</td>
+                    <td><img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}"></td>
+                    <td>{{ product.types.name|default('-') }}</td>
+                    <td>{{ product.size.name|default('-') }}</td>
+                    <td>{{ product.color.name|default('-') }}</td>
+                    <td>{{ product.angle.name|default('-') }}</td>
+                    <td>{{ product.drilling.name|default('-') }}</td>
+                    <td>{{ product.price }} €</td>
+                    <td>{{ product.category.title }}</td>
+                    <td>
                         <a href="{{ path('products_update', {'id': product.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
                         <a href="{{ path('products_delete', {'id': product.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>

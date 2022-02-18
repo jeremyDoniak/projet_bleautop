@@ -21,13 +21,13 @@
         </thead>
         <tbody>
             {% for user in users %}
-                <tr>
-                    <td class="align-middle">{{ loop.index }}</td>
-                    <td class="align-middle">{{ user.name }}</td>
-                    <td class="align-middle">{{ user.email }}</td>
-                    <td class="align-middle">{{ user.phone }}</td>
-                    <td class="align-middle">{{ user.company }}</td>
-                    <td class="align-middle">
+                <tr class="align-middle">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.company }}</td>
+                    <td>
                         {% for address in user.addresses %}
                             <ul>
                                 <li>{{ address.address1 }}</li>

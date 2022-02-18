@@ -149,12 +149,3 @@ section {
 table img {
     width: 100px;
 }
-
-label {
-    margin: 1em;
-}
-
-input, textarea {
-    max-width: 100%;
-    width: 50%;
-}

@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}types{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des différents types</h1>
+
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for type in types %}
+                <tr class="align-middle">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ type.name }}</td>
+                     <td>
+                        <a href="{{ path('types_update', {'id': type.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('types_delete', {'id': type.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end my-5">
+        <a href="{{ path('types_create') }}" class="btn">Ajouter un produit</a>
+    </div>
+
+{% endblock %}
