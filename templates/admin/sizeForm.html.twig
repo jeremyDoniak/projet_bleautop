@@ -1,0 +1,22 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}taille{% endblock %}
+
+{% block body %}
+
+    {{ form_start(sizeForm) }}
+
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(sizeForm.name, {'label': 'Nom'}) }}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_size_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer</button>
+        </div>
+        
+    {{ form_end(sizeForm) }}
+
+{% endblock %}

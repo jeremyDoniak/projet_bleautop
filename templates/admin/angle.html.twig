@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}angle{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des différents angles</h1>
+
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for angle in angles %}
+                <tr class="align-middle">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ angle.name }}</td>
+                     <td>
+                        <a href="{{ path('angle_update', {'id': angle.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('angle_delete', {'id': angle.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end my-5">
+        <a href="{{ path('angle_create') }}" class="btn">Ajouter un produit</a>
+    </div>
+
+{% endblock %}

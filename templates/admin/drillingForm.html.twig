@@ -1,0 +1,22 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}trâme{% endblock %}
+
+{% block body %}
+
+    {{ form_start(drillingForm) }}
+
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(drillingForm.name, {'label': 'Nom'}) }}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_drilling_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer</button>
+        </div>
+        
+    {{ form_end(drillingForm) }}
+
+{% endblock %}

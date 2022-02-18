@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Trâme{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des différentes trâme</h1>
+
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for drilling in drillings %}
+                <tr class="align-middle">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ drilling.name }}</td>
+                     <td>
+                        <a href="{{ path('drilling_update', {'id': drilling.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('drilling_delete', {'id': drilling.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end my-5">
+        <a href="{{ path('drilling_create') }}" class="btn">Ajouter un produit</a>
+    </div>
+
+{% endblock %}
