@@ -13,15 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/products', name: 'product_index')]
-    public function index(ProductRepository $productRepository): Response
-    {
-        $products = $productRepository->findAll();
-        return $this->render('product/index.html.twig', [
-            'products' => $products,
-        ]);
-    }
-
     #[Route('/produits', name: 'produits')]
     public function produits(): Response
     {
@@ -101,6 +92,61 @@ class ProductController extends AbstractController
         return $this->render('admin/productForm.html.twig', [
             'productForm' => $form->createView()
         ]);
+    }
+
+    #[Route('/admin/products/update/{id}', name: 'products_update')]
+    public function update(ProductRepository $productRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+    {
+        $product = $productRepository->find($id);
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $infoImg = $form['img']->getData();
+            $nomOldImg = $product->getImg();
+            if ($infoImg !== null) {
+                $cheminOldImg = $this->getParameter('dossier_img') . '/' . $nomOldImg;
+                if (file_exists($cheminOldImg)) {
+                    unlink($cheminOldImg);
+                }
+                $extensionImg = $infoImg->guessExtension();
+                $nomImg = time() . $extensionImg;
+                $infoImg->move($this->getParameter('dossier_img'), $nomImg);
+                $product->setImg($nomImg);
+            } else {
+                $product->setImg($nomOldImg);
+            }
+            
+            $manager = $managerRegistry->getManager();
+            $manager->persist($product);
+            $manager->flush();
+            $this->addFlash('success', 'Le produit a bien été modifié');
+            return $this->redirectToRoute('admin_products_index');
+        }
+            
+        return $this->render('admin/productForm.html.twig', [
+            'productForm' => $form->createView(),
+            'product' => $product
+        ]);
+    }
+
+    #[Route('/admin/products/delete/{id}', name: 'products_delete')]
+    public function delete(ProductRepository $productRepository, int $id, ManagerRegistry $managerRegistry)
+    {
+        $product = $productRepository->find($id);
+        $nomImg = $product->getImg();
+        if ($nomImg !== null) {
+            $cheminImg = $this->getParameter('dossier_img') . '/' . $nomImg;
+            if (file_exists($cheminImg)) {
+                unlink($cheminImg);
+            }
+        }
+        
+        $manager = $managerRegistry->getManager();
+        $manager->remove($product);
+        $manager->flush();
+        $this->addFlash('success', 'Le produit a bien été supprimé');
+        return $this->redirectToRoute('admin_products_index');
     }
 
 }

@@ -36,8 +36,8 @@
                     <td class="align-middle">{{ product.price }} €</td>
                     <td class="align-middle">{{ product.category.title }}</td>
                     <td class="align-middle">
-                        <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                        <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('products_update', {'id': product.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('products_delete', {'id': product.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}
