@@ -6,16 +6,34 @@
 
     {{ form_start(addressForm) }}
 
-        <div class="row">
-            <div class="col-12">
-                {{ form_row(addressForm.name, {'label': 'Nom'}) }}
-            </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(addressForm.billingAddress, {'label': 'Adresse de facturation'}) }}
         </div>
+        <div class="col-3">
+            {{ form_row(addressForm.zipCode, {'label': 'Adresse de facturation'}) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(addressForm.city, {'label': 'Adresse de facturation'}) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(addressForm.deliveryAddress, {'label': 'Adresse de facturation'}) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(addressForm.zipCode, {'label': 'Adresse de facturation'}) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(addressForm.city, {'label': 'Adresse de facturation'}) }}
+        </div>
+    </div>
 
-        <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('admin_address_index') }}" class="btn btn-danger m-3">Annuler</a>
-            <button class="btn btn-success m-3">Créer</button>
-        </div>
+    <div class="col-12 d-flex justify-content-end">
+        <a href="{{ path('admin_address_index') }}" class="btn btn-danger m-3">Annuler</a>
+        <button class="btn btn-success m-3">Créer</button>
+    </div>
         
     {{ form_end(addressForm) }}
 

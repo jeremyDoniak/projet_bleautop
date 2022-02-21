@@ -10,10 +10,8 @@
         <thead>
             <tr>
                 <th>N°</th>
-                <th>Address1</th>
-                <th>Address2</th>
-                <th>Zip code</th>
-                <th>City</th>
+                <th>Adresse de facturation</th>
+                <th>Adresse de livraison</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,10 +19,8 @@
             {% for address in addresses %}
                 <tr class="align-middle">
                     <td>{{ loop.index }}</td>
-                    <td>{{ address.address1 }}</td>
-                    <td>{{ address.address2 }}</td>
-                    <td>{{ address.zipCode }}</td>
-                    <td>{{ address.city }}</td>
+                    <td>{{ address.billingAddress }}</td>
+                    <td>{{ address.deliveryAddress }}</td>
                      <td>
                         <a href="{{ path('address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
                         <a href="{{ path('address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
@@ -35,7 +31,7 @@
     </table>
 
     <div class="d-flex justify-content-end my-5">
-        <a href="{{ path('address_create') }}" class="btn">Ajouter un produit</a>
+        <a href="{{ path('address_create') }}" class="btn">Ajouter une adresse</a>
     </div>
 
 {% endblock %}

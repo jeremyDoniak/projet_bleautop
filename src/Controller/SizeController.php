@@ -32,7 +32,7 @@ class SizeController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($size);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été ajouté');
+            $this->addFlash('success', 'La taille a bien été ajoutée');
             return $this->redirectToRoute('admin_size_index');
         }
         return $this->render('admin/sizeForm.html.twig', [
@@ -51,7 +51,7 @@ class SizeController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($size);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été modifié');
+            $this->addFlash('success', 'La taille a bien été modifiée');
             return $this->redirectToRoute('admin_size_index');
         }
             
@@ -69,7 +69,7 @@ class SizeController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($size);
         $manager->flush();
-        $this->addFlash('success', 'Le type a bien été supprimé');
+        $this->addFlash('success', 'La taille a bien été supprimée');
         return $this->redirectToRoute('admin_size_index');
     }
 }

@@ -32,7 +32,7 @@ class DrillingController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($drilling);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été ajouté');
+            $this->addFlash('success', 'La trâme a bien été ajoutée');
             return $this->redirectToRoute('admin_drilling_index');
         }
         return $this->render('admin/drillingForm.html.twig', [
@@ -51,7 +51,7 @@ class DrillingController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($drilling);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été modifié');
+            $this->addFlash('success', 'La trâme a bien été modifiée');
             return $this->redirectToRoute('admin_drilling_index');
         }
             
@@ -69,7 +69,7 @@ class DrillingController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($drilling);
         $manager->flush();
-        $this->addFlash('success', 'Le type a bien été supprimé');
+        $this->addFlash('success', 'La trâme a bien été supprimée');
         return $this->redirectToRoute('admin_drilling_index');
     }
 }

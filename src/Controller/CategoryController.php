@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($category);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été ajouté');
+            $this->addFlash('success', 'La catégorie a bien été ajouté');
             return $this->redirectToRoute('admin_category_index');
         }
         return $this->render('admin/categoryForm.html.twig', [
@@ -51,7 +51,7 @@ class CategoryController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($category);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été modifié');
+            $this->addFlash('success', 'La catégorie a bien été modifié');
             return $this->redirectToRoute('admin_category_index');
         }
             
@@ -69,7 +69,7 @@ class CategoryController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($category);
         $manager->flush();
-        $this->addFlash('success', 'Le type a bien été supprimé');
+        $this->addFlash('success', 'La catégorie a bien été supprimé');
         return $this->redirectToRoute('admin_category_index');
     }
 }

@@ -14,10 +14,10 @@ class Address
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $address1;
+    private $billingAddress;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $address2;
+    private $deliveryAddress;
 
     #[ORM\Column(type: 'integer')]
     private $zip_code;
@@ -33,26 +33,26 @@ class Address
         return $this->id;
     }
 
-    public function getAddress1(): ?string
+    public function getBillingAddress(): ?string
     {
-        return $this->address1;
+        return $this->billingAddress;
     }
 
-    public function setAddress1(string $address1): self
+    public function setBillingAddress(string $billingAddress): self
     {
-        $this->address1 = $address1;
+        $this->billingAddress = $billingAddress;
 
         return $this;
     }
 
-    public function getAddress2(): ?string
+    public function getDeliveryAddress(): ?string
     {
-        return $this->address2;
+        return $this->deliveryAddress;
     }
 
-    public function setAddress2(?string $address2): self
+    public function setDeliveryAddress(?string $deliveryAddress): self
     {
-        $this->address2 = $address2;
+        $this->deliveryAddress = $deliveryAddress;
 
         return $this;
     }
@@ -91,10 +91,5 @@ class Address
         $this->user = $user;
 
         return $this;
-    }
-    
-    public function __toString()
-    {
-        return $this->title;
     }
 }

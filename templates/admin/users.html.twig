@@ -10,12 +10,13 @@
         <thead>
             <tr>
                 <th>N°</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Company</th>
+                <th>Téléphone</th>
+                <th>Entreprise</th>
+                <th>Adresse de facturation</th>
+                <th>Adresse de livraison</th>
                 <th>Roles</th>
-                <th>Address</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -30,8 +31,16 @@
                     <td>
                         {% for address in user.addresses %}
                             <ul>
-                                <li>{{ address.address1 }}</li>
-                                <li>{{ address.address2 }}</li>
+                                <li>{{ address.billingAddress }}</li>
+                                <li>{{ address.zipCode }}</li>
+                                <li>{{ address.city }}</li>
+                            </ul>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for address in user.addresses %}
+                            <ul>
+                                <li>{{ address.deliveryAddress }}</li>
                                 <li>{{ address.zipCode }}</li>
                                 <li>{{ address.city }}</li>
                             </ul>

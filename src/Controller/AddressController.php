@@ -32,7 +32,7 @@ class AddressController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($address);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été ajouté');
+            $this->addFlash('success', 'L\'adresse a bien été ajoutée');
             return $this->redirectToRoute('admin_address_index');
         }
         return $this->render('admin/addressForm.html.twig', [
@@ -51,7 +51,7 @@ class AddressController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($address);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été modifié');
+            $this->addFlash('success', 'L\'adresse a bien été modifiée');
             return $this->redirectToRoute('admin_address_index');
         }
             
@@ -69,7 +69,7 @@ class AddressController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($address);
         $manager->flush();
-        $this->addFlash('success', 'Le type a bien été supprimé');
+        $this->addFlash('success', 'L\'adresse a bien été supprimée');
         return $this->redirectToRoute('admin_address_index');
     }
 }

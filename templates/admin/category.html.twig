@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>N°</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,7 +18,7 @@
             {% for category in categories %}
                 <tr class="align-middle">
                     <td>{{ loop.index }}</td>
-                    <td>{{ category.title }}</td>
+                    <td>{{ category.name }}</td>
                      <td>
                         <a href="{{ path('category_update', {'id': category.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
                         <a href="{{ path('category_delete', {'id': category.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
@@ -29,7 +29,7 @@
     </table>
 
     <div class="d-flex justify-content-end my-5">
-        <a href="{{ path('category_create') }}" class="btn">Ajouter un produit</a>
+        <a href="{{ path('category_create') }}" class="btn">Ajouter une catégorie</a>
     </div>
 
 {% endblock %}

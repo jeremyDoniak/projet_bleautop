@@ -32,7 +32,7 @@ class AngleController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($angle);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été ajouté');
+            $this->addFlash('success', 'L\'angle a bien été ajouté');
             return $this->redirectToRoute('admin_angle_index');
         }
         return $this->render('admin/angleForm.html.twig', [
@@ -51,7 +51,7 @@ class AngleController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($angle);
             $manager->flush();
-            $this->addFlash('success', 'Le type a bien été modifié');
+            $this->addFlash('success', 'L\'angle a bien été modifié');
             return $this->redirectToRoute('admin_angle_index');
         }
             
@@ -69,7 +69,7 @@ class AngleController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($angle);
         $manager->flush();
-        $this->addFlash('success', 'Le type a bien été supprimé');
+        $this->addFlash('success', 'L\'angle a bien été supprimé');
         return $this->redirectToRoute('admin_angle_index');
     }
 }
