@@ -22,39 +22,26 @@
         </ul>
     </div>
     <div class="card_produits_container">
-        <div class="card_produits">
-            <div>
-                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+        {% for product in products %}
+            <div class="card_produits">
+                <div>
+                    <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
+                </div>
+                <div>
+                    <h3>{{ product.name }}</h3>
+                </div>
+                <div>
+                    <p>Types: {{ product.types.name|default(' ') }}</p>
+                    <p>Taille: {{ product.size.name|default(' ') }}</p>
+                    <p>Couleur: {{ product.color.name|default(' ') }}</p>
+                    <p>Angle: {{ product.angle.name|default(' ') }}</p>
+                    <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                </div>
+                <div class="btn">
+                    <a href="{{ path('produit', {'id': product.id }) }}">+ info</a>
+                </div>
             </div>
-            <div>
-                <h3>ISATIS DROITE GRIS</h3>
-            </div>
-            <div class="btn">
-                <a href="{{ path('produit') }}">+ info</a>
-            </div>
-        </div>
-        <div class="card_produits">
-            <div>
-                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
-            </div>
-            <div>
-                <h3>ISATIS DROITE GRIS</h3>
-            </div>
-            <div class="btn">
-                <a href="{{ path('produit') }}">+ info</a>
-            </div>
-        </div>
-        <div class="card_produits">
-            <div>
-                <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
-            </div>
-            <div>
-                <h3>ISATIS DROITE GRIS</h3>
-            </div>
-            <div class="btn">
-                <a href="{{ path('produit') }}">+ info</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 

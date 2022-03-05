@@ -14,50 +14,55 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductController extends AbstractController
 {
     #[Route('/produits', name: 'produits')]
-    public function produits(): Response
+    public function produits(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('/product/produits.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 
-    #[Route('/produit', name: 'produit')]
-    public function produit(): Response
+    #[Route('/produit/{id}', name: 'produit')]
+    public function produit(ProductRepository $productRepository, int $id): Response
     {
         return $this->render('/product/produit.html.twig', [
-            'controller_name' => 'HomeController',
+            'product' => $productRepository->find($id),
         ]);
     }
 
     #[Route('/produits_packs', name: 'produits_packs')]
-    public function produitsPacks(): Response
+    public function produitsPacks(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('/product/produits_packs.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 
     #[Route('/produits_prises', name: 'produits_prises')]
-    public function produitsPrises(): Response
+    public function produitsPrises(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('/product/produits_prises.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 
     #[Route('/produits_renovation', name: 'produits_renovation')]
-    public function produitsRenovation(): Response
+    public function produitsRenovation(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('/product/produits_renovation.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 
     #[Route('/produits_volumes', name: 'produits_volumes')]
-    public function produitsVolumes(): Response
+    public function produitsVolumes(ProductRepository $productRepository): Response
     {
+        $products = $productRepository->findAll();
         return $this->render('/product/produits_volumes.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
     

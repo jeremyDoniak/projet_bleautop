@@ -34,7 +34,7 @@
                     <td>{{ product.angle.name|default('-') }}</td>
                     <td>{{ product.drilling.name|default('-') }}</td>
                     <td>{{ product.price }} €</td>
-                    <td>{{ product.category.title }}</td>
+                    <td>{{ product.category.name }}</td>
                     <td>
                         <a href="{{ path('products_update', {'id': product.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
                         <a href="{{ path('products_delete', {'id': product.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>

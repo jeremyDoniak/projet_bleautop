@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}produits{% endblock %}
+{% block title %}produit{% endblock %}
 
 {% block body %}
 
@@ -23,24 +23,20 @@
     </div>
     <div class="card_produit">
         <div>
-            <img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt="Bleautop_Isatis_droite_gris">
+            <img src="{{ asset('img/' ~ product.img) }}" alt="photo principale {{ product.name }}">
         </div>
         <div>
-            <h3>ISATIS</h3>
-            <p>
-                ----------------------------------------------------------------------------------------------------<br>
-                <b>150 €</b><br>
-                long. : 90,00 cm/ larg. : 27,00 cm/ hauteur : 12,00 cm<br>
-                ----------------------------------------------------------------------------------------------------<br>
-                Typologie:<br><br>
-                Droite Gauche Paire<br><br>
-                Taille:<br><br>
-                Small Medium Large Extralarge<br><br>
-                Angle d’ouverture:<br><br>
-                Flatten Normal Expand<br><br>
-                Option trâme (espace 10cm) :<br><br>
-                Couleurs : Noir / blanc / rouge / bleu / vert / jaune / orange / violet
-            </p>
+            <h3>{{ product.name }}</h3>
+            <p>--------------------------------------------------------------------------------------------</p>
+            <p><b>{{ product.price }} €</b></p>
+            <p>longueur : {{ product.length }} cm / largeur : {{ product.width }} cm / hauteur : {{ product.height }} cm</p>
+            <p>--------------------------------------------------------------------------------------------</p>
+            <p>Typologie: {{ product.types.name|default(' ') }}</p>
+            <p>Taille: {{ product.size.name|default(' ') }}</p>
+            <p>Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
+            <p>Option trâme (espace 10cm): {{ product.drilling.name|default(' ') }}</p>
+            <p>Couleurs: {{ product.color.name|default(' ') }}</p>
+            <p>Description: {{ product.description|default(' ') }}</p>
         </div>
     </div>
     <div class="btn">
