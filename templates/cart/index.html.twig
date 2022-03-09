@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+
+<section class="cart">
+    <main class="container-fluid p-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-5">Mon panier</h2>
+                {% if cart is not empty %}
+                    <table class="table align-middle">
+                        <thead class="text-center table-secondary">
+                            <tr class="fw-bold">
+                                <th>Nom</th>
+                                <th>Prix unitaire</th>
+                                <th>Quantité</th>
+                                <th>Sous-total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for line in cart %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('produit', {'id': line.product.id}) }}">
+                                            <img src="{{ asset('img/' ~ line.product.img) }}" alt="photo principale {{ line.product.name }}" class="me-3">
+                                            {{ line.product.name }} {{ line.product.types.name|default(' ') }} {{ line.product.size.name|default(' ') }} {{ line.product.color.name|default(' ') }} {{ line.product.angle.name|default(' ') }} {{ line.product.drilling.name|default(' ') }}
+                                        </a>
+                                        (<a href="{{ path('cart_delete', {'id': line.product.id}) }}" class="text-danger">supprimer</a>)
+                                    </td>
+                                    <td class="text-end">{{ line.product.price|number_format(0, ',', ' ') }} €</td>
+                                    <td class="text-center">
+                                        <a href="{{ path('cart_remove', {'id': line.product.id}) }}"><i class="fas fa-minus-square text-danger"></i></a>
+                                        <span class="mx-2">{{ line.quantity }}</span>
+                                        <a href="{{ path('cart_add', {'id': line.product.id}) }}"><i class="fas fa-plus-square text-success"></i></a>
+                                    </td>
+                                    <td class="text-end">{{ (line.product.price * line.quantity)|number_format(0, ',', ' ') }} €</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="table-secondary text-end">
+                            <tr class="fw-bold">
+                                <th colspan="3">TOTAL :</th>
+                                <th>{{ total|number_format(0, ',', ' ') }} €</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="text-end mt-5">
+                        <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger me-3">Vider le panier</a>
+                        <a href="{{ path('payment') }}" class="btn btn-success">Valider le panier</a>
+                    </div>
+                {% else %}
+                    <p class="text-center my-5">Votre panier est vide : <a href="{{ path('produits') }}" class="text-primary">parcourir les produits</a></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card_produits_container">
+            {% for product in latestProducts %}
+                <div class="card_produits">
+                    <div>
+                        <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
+                    </div>
+                    <div>
+                        <h3>{{ product.name }}</h3>
+                    </div>
+                    <div>
+                        <p>Types: {{ product.types.name|default(' ') }}</p>
+                        <p>Taille: {{ product.size.name|default(' ') }}</p>
+                        <p>Couleur: {{ product.color.name|default(' ') }}</p>
+                        <p>Angle: {{ product.angle.name|default(' ') }}</p>
+                        <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                    </div>
+                    <div class="text-end">
+                        <a href="{{ path('produits', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">Voir</a>
+                        <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success btn-sm">Ajouter au panier</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+</section>
+
+{% endblock %}

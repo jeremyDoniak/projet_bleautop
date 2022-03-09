@@ -13,58 +13,69 @@ class Address
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $billingAddress;
+    #[ORM\Column(type: 'string', length: 25)]
+    private $name;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $street;
+    
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $deliveryAddress;
+    private $complement;
 
     #[ORM\Column(type: 'integer')]
-    private $zip_code;
+    private $zip;
 
-    #[ORM\Column(type: 'string', length: 45)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $city;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'addresses')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    public function getId(): ?int
+    public function getName(): ?string
     {
-        return $this->id;
+        return $this->name;
     }
 
-    public function getBillingAddress(): ?string
+    public function setName(string $name): self
     {
-        return $this->billingAddress;
-    }
-
-    public function setBillingAddress(string $billingAddress): self
-    {
-        $this->billingAddress = $billingAddress;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getDeliveryAddress(): ?string
+    public function getStreet(): ?string
     {
-        return $this->deliveryAddress;
+        return $this->street;
     }
 
-    public function setDeliveryAddress(?string $deliveryAddress): self
+    public function setStreet(string $street): self
     {
-        $this->deliveryAddress = $deliveryAddress;
+        $this->street = $street;
 
         return $this;
     }
 
-    public function getZipCode(): ?int
+    public function getComplement(): ?string
     {
-        return $this->zip_code;
+        return $this->complement;
     }
 
-    public function setZipCode(int $zip_code): self
+    public function setComplement(?string $complement): self
     {
-        $this->zip_code = $zip_code;
+        $this->complement = $complement;
+
+        return $this;
+    }
+
+    public function getZip(): ?int
+    {
+        return $this->zip;
+    }
+
+    public function setZip(int $zip): self
+    {
+        $this->zip = $zip;
 
         return $this;
     }
@@ -91,5 +102,5 @@ class Address
         $this->user = $user;
 
         return $this;
-    }
+    }    
 }

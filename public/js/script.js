@@ -1,14 +1,14 @@
 /****************** HEADER *******************/
 
-$('.achat_resume').hide(100);
-$('.achat_container').hide(100);
+$('.cart_resume').hide(100);
+$('.cart_container').hide(100);
 
-$('#achat').click(() => {
-	$('.achat_container').stop();
-	$('.achat_resume').stop();
-	$('.achat_resume').css("visibility", "visible");
-	$('.achat_container').slideToggle(1300);
-	$('.achat_resume').fadeToggle(1300);
+$('#cart').click(() => {
+	$('.cart_container').stop();
+	$('.cart_resume').stop();
+	$('.cart_resume').css("visibility", "visible");
+	$('.cart_container').slideToggle(1300);
+	$('.cart_resume').fadeToggle(1300);
 });
 
 /*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
@@ -34,6 +34,7 @@ $('.btnright').animate({
 /****************** SECTION-2 CAROUSEL *******************/
 
 const items = document.querySelectorAll('.carousel_item');
+items[0].classList.add('active');
 const nbSlide = items.length;
 const suivant = document.querySelector('.arrow_right');
 const precedent = document.querySelector('.arrow_left');

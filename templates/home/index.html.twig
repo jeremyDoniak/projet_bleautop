@@ -5,6 +5,17 @@
 {% block body %}
 
 <section class="intro_container">
+    <div class="row py-5">
+        <div class="col-8 offset-2">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
     <div>
         <h1>'Grimper Bleautop, <br> grimper Fontainebleau'</h1>
     </div>
@@ -23,33 +34,17 @@
         <p><</p>
     </div>
     <div class="carousel_container">
-        <div class="carousel_item active">
-            <img src="{{ asset('img/pack_ouverture.png') }}" alt="le pack ouverture est une sélections de prise pour créer sa première ouverture de voie">
-            <span>
-                <p>Pack ouverture</p>
-                <div class="btn">
-                    <a href="{{ path('produits') }}">+ infos</a>
-                </div>
-            </span>
-        </div>
-        <div class="carousel_item">
-            <img src="{{ asset('img/pack_standard.png') }}" alt="le pack ouverture est une sélections de prise pour créer toutes sortes d'ouverture de voie">
-            <span>
-                <p>Pack standard</p>
-                <div class="btn">
-                    <a href="{{ path('produits') }}">+ infos</a>
-                </div>
-            </span>
-        </div>
-        <div class="carousel_item">
-            <img src="{{ asset('img/pack_competition.png') }}" alt="le pack compétition est une sélections de prise pour créer des ouvertures de hauts niveaux">
-            <span>
-                <p>Pack compétition</p>
-                <div class="btn">
-                    <a href="{{ path('produits') }}">+ infos</a>
-                </div>
-            </span>
-        </div>
+        {% for product in products %}
+            <div class="carousel_item">
+                <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
+                <span>
+                    <p>{{ product.name }}</p>
+                    <div class="btn">
+                        <a href="{{ path('produit', {'id': product.id }) }}">+ infos</a>
+                    </div>
+                </span>
+            </div>
+        {% endfor %}
     </div>
     <div class="arrow_right">
         <p>></p>

@@ -2,25 +2,35 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
+use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
+        $categoryId = $categoryRepository->findOneBy(['name' => 'packs'])->getId();
+        $products = $productRepository->findBy(['category' => $categoryId], ['id' => 'DESC'], 5);
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 
     #[Route('/renovation', name: 'renovation')]
-    public function renovation(): Response
+    public function renovation(ProductRepository $productRepository, CartService $cartService): Response
     {
+        $total = $cartService->getTotal();
+        $cart = $cartService->getCart();
+        $products = $productRepository->findAll();
         return $this->render('/home/renovation.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
+            'cart' => $cart,
+            'total' => $total,
         ]);
     }
 
@@ -32,10 +42,10 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/achat', name: 'achat')]
-    public function achat(): Response
+    #[Route('/cart', name: 'cart')]
+    public function cart(): Response
     {
-        return $this->render('/home/achat.html.twig', [
+        return $this->render('/home/cart.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
@@ -55,6 +65,4 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
-
 }

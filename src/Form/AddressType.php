@@ -14,23 +14,31 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('billingAddress', TextType::class, [
+            ->add('name', TextType::class, [
                 'required' => true,
-                'label' => 'Adresse de facturation',
+                'label' => 'Nom de l\'adresse',
                 'attr' => [
-                    'maxLength' => 255,
-                    'placeholder' => 'Ex.: 12 rue de la gare'
+                    'maxLength' => 25,
+                    'placeholder' => 'Ex.: domicile'
                 ]
             ])
-            ->add('deliveryAddress', TextType::class, [
+            ->add('street', TextType::class, [
                 'required' => true,
-                'label' => 'Adresse de livraison',
+                'label' => 'Adresse',
                 'attr' => [
                     'maxLength' => 255,
                     'placeholder' => 'Ex.: 3 place de la gare'
                 ]
             ])
-            ->add('zipCode', IntegerType::class, [
+            ->add('complement', TextType::class, [
+                'required' => false,
+                'label' => 'Complément d\'adresse',
+                'attr' => [
+                    'maxLength' => 255,
+                    'placeholder' => 'Ex.: 3 place de la gare'
+                ]
+            ])
+            ->add('zip', IntegerType::class, [
                 'required' => true,
                 'label' => 'Code postal',
                 'attr' => [

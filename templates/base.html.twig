@@ -21,6 +21,10 @@
         {% block stylesheets %}{% endblock %}
 
         
+
+        
+
+        
     </head>
 
     <body>
@@ -60,27 +64,24 @@
                             <a href="{{ path('contact') }}">Contact</a>
                         </li>
                         <li>
-                           <div id="achat">Achat</div>
+                            {% if app.user %}
+                                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                            {% else %}
+                                <a href="{{ path('app_login') }}">Connexion</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                           <div id="cart">Panier</div>
+                        </li>
+                        <li>
+                            {% if app.user %}
+                                <a href="{{ path('home') }}">Bonjour {{ app.user.name }} !</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div class="achat_resume">
-                <div class="achat_container">
-                    <ol>
-                        <li><img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt=""> Test 1</li>
-                        <li><img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt=""> Test 2</li>
-                        <li><img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt=""> Test 3</li>
-                        <li><img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt=""> Test 4</li>
-                        <li><img src="{{ asset('img/Bleautop_Isatis_droite_gris.png') }}" alt=""> Test 5</li>
-                    </ol>
-                    <div>
-                        <div class="btn">
-                            <a href="{{ path('achat') }}">Passer la commande</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           {{ render(controller('App\\Controller\\CartController::getNavCart')) }}
         </header>
 
         {% block body %}{% endblock %}

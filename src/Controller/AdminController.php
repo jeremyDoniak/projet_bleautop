@@ -18,21 +18,21 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin_products', name: 'admin_products')]
-    public function produits(ProductRepository $productRepository): Response
-    {
-        $products = $productRepository->findAll();
-        return $this->render('admin/products.html.twig', [
-            'products' => $products,
-        ]);
-    }
+    // #[Route('/admin_products', name: 'admin_products')]
+    // public function produits(ProductRepository $productRepository): Response
+    // {
+    //     $products = $productRepository->findAll();
+    //     return $this->render('admin/products.html.twig', [
+    //         'products' => $products,
+    //     ]);
+    // }
 
-    #[Route('/admin_users', name: 'admin_users')]
-    public function utilisateurs(UserRepository $userRepository): Response
-    {
-        $users = $userRepository->findAll();
-        return $this->render('admin/users.html.twig', [
-            'users' => $users,
-        ]);
-    }
+    // #[Route('/admin_users', name: 'admin_users')]
+    // public function utilisateurs(UserRepository $userRepository): Response
+    // {
+    //     $users = $userRepository->findAll();
+    //     return $this->render('admin/users.html.twig', [
+    //         'users' => $users,
+    //     ]);
+    // }
 }

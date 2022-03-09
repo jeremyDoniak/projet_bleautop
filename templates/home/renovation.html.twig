@@ -6,45 +6,33 @@
 
     <section class="renovation">
         <h1>Nos offres de rénovation</h1>
-        <div class="renovation_container">
-            <div>
-                <img src="{{ asset('img/bi-prise_web.png') }}" alt="exemple de prise avant et après rénovation">
-            </div>
-            <div>
-                <div class="card_renov">
-                    <div>
-                        <h2>Forfait standard</h2><br>
-                        <p><b>150 €</b><br><br>
-                            pour la première des conditions atteintes : 100 kg ou 30 pièces.
+        <div class="card_produits_container">
+            {% for product in products %}
+                {% if product.category.name == "renovation" %}
+                    <div class="card_produits">
+                        <div>
+                            <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
+                        </div>
+                        <div>
+                            <h3>{{ product.name }}</h3>
+                        </div>
+                        <div>
+                            <p><b>{{ product.price }} €</b></p>
+                        </div>
                         <div class="check_condition">
                             <span>
                                 <input type="checkbox" name="check">
-                                <label for="check">J’ai lu et j’accepte les conditions énoncées dans la documentation de validation.</label>
+                                <label for="check">J’ai lu et j’accepte les conditions énoncé dans la documentation de validation disponible ci-dessous.</label>
                             </span>
                         </div>
-                    </div>
-                    <div class="btn">
-                        <a href="#">Ajouter au panier</a>
-                    </div>
-                </div>
-                <div class="card_renov">
-                    <div>
-                        <h2>Forfait premium</h2><br>
-                        <p><b>400 €</b><br><br>
-                            pour la première des conditions atteintes : 300 kg ou 100 pièces.
-                        <div class="check_condition">
-                            <span>
-                                <input type="checkbox" name="check">
-                                <label for="check">J’ai lu et j’accepte les conditions énoncées dans la documentation de validation.</label>
-                            </span>
+                        <div class="btn">
+                            {# {% if input.check == 1 %} #}
+                                <a href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
+                            {# {% endif %} #}
                         </div>
                     </div>
-                    <div class="btn">
-                        <a href="#">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
-            
+                {% endif %}
+            {% endfor %}
         </div>
         <div class="arrow_down">
             <a href="{{ path('renovation') }}#renovation_forfait">v</a>

@@ -8,31 +8,31 @@
 
     <div class="row">
         <div class="col-6">
-            {{ form_row(addressForm.billingAddress, {'label': 'Adresse de facturation'}) }}
+            {{ form_row(addressForm.name) }}
         </div>
         <div class="col-3">
-            {{ form_row(addressForm.zipCode, {'label': 'Adresse de facturation'}) }}
+            {{ form_row(addressForm.street) }}
         </div>
         <div class="col-3">
-            {{ form_row(addressForm.city, {'label': 'Adresse de facturation'}) }}
+            {{ form_row(addressForm.complement) }}
         </div>
     </div>
     
     <div class="row">
         <div class="col-6">
-            {{ form_row(addressForm.deliveryAddress, {'label': 'Adresse de facturation'}) }}
+            {{ form_row(addressForm.zip) }}
         </div>
         <div class="col-3">
-            {{ form_row(addressForm.zipCode, {'label': 'Adresse de facturation'}) }}
+            {{ form_row(addressForm.city) }}
         </div>
-        <div class="col-3">
-            {{ form_row(addressForm.city, {'label': 'Adresse de facturation'}) }}
-        </div>
+        {# <div class="col-3">
+            {{ form_row(addressForm.cityDelivery) }}
+        </div> #}
     </div>
 
     <div class="col-12 d-flex justify-content-end">
         <a href="{{ path('admin_address_index') }}" class="btn btn-danger m-3">Annuler</a>
-        <button class="btn btn-success m-3">Créer</button>
+        <button class="btn btn-success m-3">Créer / Modifier</button>
     </div>
         
     {{ form_end(addressForm) }}

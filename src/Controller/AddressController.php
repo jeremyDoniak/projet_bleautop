@@ -7,6 +7,7 @@ use App\Form\AddressType;
 use App\Repository\AddressRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,8 @@ class AddressController extends AbstractController
         $form = $this->createForm(AddressType::class, $address);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $userId = $this->getUser()->getId();
+            $address->setUser($userId);
             $manager = $managerRegistry->getManager();
             $manager->persist($address);
             $manager->flush();
