@@ -7,10 +7,15 @@ use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
@@ -37,7 +42,7 @@ class UserType extends AbstractType
                 'label' => 'Téléphone',
                 'attr' => [
                     'min' => 0,
-                    'max' => 99999,
+                    'max' => 99999999999,
                     'placeholder' => 'Ex.: 0123456789'
                 ]
             ])
@@ -49,19 +54,17 @@ class UserType extends AbstractType
                     'placeholder' => 'Ex.: nom de l\'entreprise'
                 ]
             ])
-            // ->add('roles', TextType::class, [
-            //     'required' => false,
-            //     'label' => 'Roles',
-            //     'attr' => [
-            //         'maxLength' => 20,
-            //         'placeholder' => 'Ex.: role de l\'utilisateur'
-            //     ]
-            // ])
-            ->add('addresses', EntityType::class, [
-                'class' => Address::class,
-                'choice_label' => 'name',
-                'label' => 'Adresses',
-                'multiple' => true
+            ->add('roles', ChoiceType::class, [
+                'required' => true,
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Roles',
+                'choices' => [
+                    'SuperAdministrateur' => 'ROLE_SUPER_ADMIN',
+                    'Administrateur' => 'ROLE_ADMIN',
+                    'Client' => 'ROLE_USER',
+                    'Fournisseur' => 'ROLE_SUPPLIER',
+                ]
             ])
         ;
     }

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}utilisateurs{% endblock %}
+
+{% block body %}
+        <section class="user">
+            <h1>Mon profil</h1>
+
+            <div class="card_user_container">
+                <div class="card_user">
+                    <h2>Mes informations</h2>
+                    <div class="btn">
+                        <a href="{{ path('profile', {'id': app.user.id }) }}">+ info</a>
+                    </div>
+                </div>
+                <div class="card_user">
+                    <h2>Mes adresses</h2>
+                    <div class="btn">
+                        <a href="{{ path('profile_address', {'id': app.user.id }) }}">+ info</a>
+                    </div>
+                </div>
+                <div class="card_user">
+                    <h2>Mes commandes</h2>
+                    <div class="btn">
+                        {# <a href="{{ path('profile', {'id': user.id }) }}">+ info</a> #}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

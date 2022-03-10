@@ -14,8 +14,7 @@
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Entreprise</th>
-                <th>Adresse de facturation</th>
-                <th>Adresse de livraison</th>
+                <th>Adresse(s)</th>
                 <th>Roles</th>
                 <th>Actions</th>
             </tr>
@@ -31,21 +30,11 @@
                     <td>
                         {% for address in user.addresses %}
                             <ul>
-                                <li>{{ address.billingAddress }}</li>
-                                <li>{{ address.zipCodeBilling }}</li>
-                                <li>{{ address.cityBilling }}</li>
+                                <li>{{ address.name }}</li>
                             </ul>
                         {% endfor %}
                     </td>
-                    <td>
-                        {% for address in user.addresses %}
-                            <ul>
-                                <li>{{ address.deliveryAddress|default(' ') }}</li>
-                                <li>{{ address.zipCodeDelivery|default(' ') }}</li>
-                                <li>{{ address.cityDelivery|default(' ') }}</li>
-                            </ul>
-                        {% endfor %}
-                    </td>
+
                     <td class="align-middle">
                         <ul>
                             {% for role in user.roles %}
@@ -54,8 +43,8 @@
                         </ul>
                     </td>
                     <td class="align-middle">
-                        <a href="{{ path('user_update', {'id': user.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                        <a href="{{ path('user_delete', {'id': user.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('admin_user_update', {'id': user.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -63,7 +52,8 @@
     </table>
 
     <div class="d-flex justify-content-end my-5">
-        <a href="{{ path('user_create') }}" class="btn">Ajouter un utilisateur</a>
+        <a href="{{ path('admin_user_create') }}" class="btn me-5">Ajouter un utilisateur</a>
+        <a href="{{ path('admin_address_create') }}" class="btn">Ajouter une adresse</a>
     </div>
 
 {% endblock %}

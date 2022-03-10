@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}adresses{% endblock %}
+
+{% block body %}
+    <section class="user">
+        <h1>Liste des différentes adresses</h1>
+
+        <table class="table text-center table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nom de l'utilisateur</th>
+                    <th>Nom de l'adresse</th>
+                    <th>Adresse</th>
+                    <th>Complément d'adresse</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for address in addresses %}
+                    <tr class="align-middle">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ address.user.name }}</td>
+                        <td>{{ address.name }}</td>
+                        <td>{{ address.street }}</td>
+                        <td>{{ address.complement }}</td>
+                        <td>{{ address.zip }}</td>
+                        <td>{{ address.city }}</td>
+                        <td>
+                            <a href="{{ path('profile_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                            <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-end my-5">
+            <a href="{{ path('profile_address_create') }}" class="btn">Ajouter une adresse</a>
+        </div>
+    </section>
+{% endblock %}

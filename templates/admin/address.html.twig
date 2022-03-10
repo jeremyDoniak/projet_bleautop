@@ -10,8 +10,12 @@
         <thead>
             <tr>
                 <th>N°</th>
-                <th>Adresse de facturation</th>
-                <th>Adresse de livraison</th>
+                <th>Nom de l'utilisateur</th>
+                <th>Nom de l'adresse</th>
+                <th>Adresse</th>
+                <th>Complément d'adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,11 +23,15 @@
             {% for address in addresses %}
                 <tr class="align-middle">
                     <td>{{ loop.index }}</td>
-                    <td>{{ address.billingAddress }}</td>
-                    <td>{{ address.deliveryAddress }}</td>
-                     <td>
-                        <a href="{{ path('address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                        <a href="{{ path('address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    <td>{{ address.user.name }}</td>
+                    <td>{{ address.name }}</td>
+                    <td>{{ address.street }}</td>
+                    <td>{{ address.complement }}</td>
+                    <td>{{ address.zip }}</td>
+                    <td>{{ address.city }}</td>
+                    <td>
+                        <a href="{{ path('admin_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('admin_address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -31,7 +39,7 @@
     </table>
 
     <div class="d-flex justify-content-end my-5">
-        <a href="{{ path('address_create') }}" class="btn">Ajouter une adresse</a>
+        <a href="{{ path('admin_address_create') }}" class="btn">Ajouter une adresse</a>
     </div>
 
 {% endblock %}

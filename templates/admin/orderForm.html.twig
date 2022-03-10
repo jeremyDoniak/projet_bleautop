@@ -1,0 +1,31 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}commandes{% endblock %}
+
+{% block body %}
+
+    {{ form_start(orderForm) }}
+
+        <div class="row">
+            <div class="col-9">
+                {{ form_row(orderForm.user) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(orderForm.order_date)}}
+            </div>
+            <div class="col-3">
+                {{ form_row(orderForm.payment_date)}}
+            </div>
+            <div class="col-3">
+                {{ form_row(orderForm.amount)}}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_orders_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer / Modifier</button>
+        </div>
+        
+    {{ form_end(orderForm) }}
+
+{% endblock %}
