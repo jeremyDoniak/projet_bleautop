@@ -16,7 +16,11 @@ class PaymentController extends AbstractController
     #[Route('/payment', name: 'payment')]
     public function index(Request $request, SessionInterface $sessionInterface, ProductRepository $productRepository): Response
     {
-        if ($request->headers->get('referer') !== 'https://127.0.0.1:8000/cart') {
+        $authorizedReferers = [
+            'https://127.0.0.1:8000/cart',
+            'https://127.0.0.1:8000/profile/address/create'
+        ];
+        if (!in_array($request->headers->get('referer'), $authorizedReferers)) {
             return $this->redirectToRoute('cart_index');
         }
 

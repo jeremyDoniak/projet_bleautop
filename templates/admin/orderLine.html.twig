@@ -1,0 +1,30 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}commandes{% endblock %}
+
+{% block body %}
+    <section class="user">
+        <h1>Liste des différentes commandes</h1>
+
+        <table class="table text-center table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Numéro de commande</th>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr class="align-middle">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ order.order_number }}</td>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

@@ -21,65 +21,6 @@ class OrderController extends AbstractController
         ]);
     }
 
-    #[Route('/order/order/{id}', name: 'order')]
-    public function order(OrderRepository $orderRepository, int $id): Response
-    {
-        $order = $orderRepository->find($id);
-        return $this->render('/order/order.html.twig', [
-            'orders' => $order,
-        ]);
-    }
-
-    #[Route('/order/order/create', name: 'order_create')]
-    public function createOrder(Request $request, ManagerRegistry $managerRegistry)
-    {
-        $order = new Order();
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $managerRegistry->getManager();
-            $manager->persist($order);
-            $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été ajouté');
-            return $this->redirectToRoute('order_index');
-        }
-        return $this->render('order/orderForm.html.twig', [
-            'orderForm' => $form->createView()
-        ]);
-    }
-
-    #[Route('/order/order/update/{id}', name: 'order_update')]
-    public function updateOrder(OrderRepository $orderRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
-    {
-        $order = $orderRepository->find($id);
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $managerRegistry->getManager();
-            $manager->persist($order);
-            $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été modifié');
-            return $this->redirectToRoute('order_index');
-        }
-            
-        return $this->render('order/orderForm.html.twig', [
-            'orderForm' => $form->createView(),
-            'orders' => $order,
-        ]);
-    }
-
-    #[Route('/order/order/delete/{id}', name: 'order_delete')]
-    public function deleteOrder(OrderRepository $orderRepository, int $id, ManagerRegistry $managerRegistry)
-    {
-        $order = $orderRepository->find($id);
-                
-        $manager = $managerRegistry->getManager();
-        $manager->remove($order);
-        $manager->flush();
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
-        return $this->redirectToRoute('order_index');
-    }
 
     /**************** ADMIN CONTROL ********************/
 

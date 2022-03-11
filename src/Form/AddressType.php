@@ -57,10 +57,10 @@ class AddressType extends AbstractType
                     'placeholder' => 'Ex.: Paris'
                 ]
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'name'
-            ])
+            // ->add('user', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'name'
+            // ])
         ;
     }
 

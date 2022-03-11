@@ -10,19 +10,19 @@
                 <div class="card_user">
                     <h2>Mes informations</h2>
                     <div class="btn">
-                        <a href="{{ path('profile', {'id': app.user.id }) }}">+ info</a>
+                        <a href="{{ path('profile') }}">+ info</a>
                     </div>
                 </div>
                 <div class="card_user">
                     <h2>Mes adresses</h2>
                     <div class="btn">
-                        <a href="{{ path('profile_address', {'id': app.user.id }) }}">+ info</a>
+                        <a href="{{ path('profile_address') }}">+ info</a>
                     </div>
                 </div>
                 <div class="card_user">
                     <h2>Mes commandes</h2>
                     <div class="btn">
-                        {# <a href="{{ path('profile', {'id': user.id }) }}">+ info</a> #}
+                        <a href="{{ path('order_index', {'id': app.user.id }) }}">+ info</a>
                     </div>
                 </div>
             </div>

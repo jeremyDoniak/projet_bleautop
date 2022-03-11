@@ -8,9 +8,6 @@
 
         <div class="row">
             <div class="col-3">
-                {{ form_row(addressForm.user) }}
-            </div>
-            <div class="col-3">
                 {{ form_row(addressForm.name) }}
             </div>
             <div class="col-6">
@@ -29,11 +26,16 @@
                 {{ form_row(addressForm.city) }}
             </div>
         </div>
-
+        {% if cart is not empty %}
+            <div class="col-12 d-flex justify-content-end">
+                <a href="{{ path('payment') }}" class="btn btn-success">Créer et payer</a>
+            </div>
+        {% else %}
         <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('profile_address') }}" class="btn btn-danger m-3">Annuler</a>
-            <button class="btn btn-success m-3">Créer / Modifier</button>
+            <a href="{{ path('profile_address') }}" class="btn btn-success">Créer / Modifier</a>
         </div>
+        {% endif %}
+        
             
         {{ form_end(addressForm) }}
     </section>

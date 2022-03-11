@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Form\AddressType;
+use App\Service\CartService;
 use App\Repository\AddressRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,15 +82,17 @@ class AddressController extends AbstractController
     #[Route('/profile/address', name: 'profile_address')]
     public function indexUserAddress(AddressRepository $addressRepository): Response
     {
-        $address = $addressRepository->findAll();
+        $address = $addressRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/address.html.twig', [
             'addresses' => $address,
         ]);
     }
 
     #[Route('/profile/address/create', name: 'profile_address_create')]
-    public function createUserAddress(Request $request, ManagerRegistry $managerRegistry)
+    public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService)
     {
+        $cart = $cartService->getCart();
+        $total = $cartService->getTotal();
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
         $form->handleRequest($request);
@@ -103,6 +106,8 @@ class AddressController extends AbstractController
             return $this->redirectToRoute('profile_address');
         }
         return $this->render('profile/addressForm.html.twig', [
+            'cart' => $cart,
+            'total' => $total,
             'addressForm' => $form->createView()
         ]);
     }
