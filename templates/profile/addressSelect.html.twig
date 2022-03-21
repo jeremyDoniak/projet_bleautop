@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}adresses{% endblock %}
+{% block title %}Sélection d'adresse{% endblock %}
 
 {% block body %}
     <section class="user">
@@ -15,41 +15,38 @@
                 {% endfor %}
             </div>
         </div>
-        <h1>Liste des différentes adresses</h1>
+        <h1>Sélectionner l'adresse de livraison de cette commande</h1>
 
         <table class="table text-center table-hover table-sm">
             <thead>
                 <tr>
                     <th>N°</th>
+                    <th>Sélection de l'adresse</th>
                     <th>Nom de l'adresse</th>
                     <th>Adresse</th>
                     <th>Complément d'adresse</th>
                     <th>Code Postal</th>
                     <th>Ville</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for address in addresses %}
                     <tr class="align-middle">
                         <td>{{ loop.index }}</td>
+                        <td><input type="radio" name="selectedAddress"></td>
                         <td>{{ address.name }}</td>
                         <td>{{ address.street }}</td>
                         <td>{{ address.complement }}</td>
                         <td>{{ address.zip }}</td>
                         <td>{{ address.city }}</td>
-                        <td>
-                            <a href="{{ path('profile_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                            <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <div class="d-flex justify-content-end my-5">
-            <a href="{{ path('profile_index') }}" class="btn me-3">Retour</a>
-            <a href="{{ path('profile_address_create') }}" class="btn">Ajouter une adresse</a>
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('profile_address') }}" class="btn btn-danger me-3">Annuler</a>
+            <a href="{{ path('payment') }}" class="btn btn-success">Payer</a>
         </div>
     </section>
 {% endblock %}

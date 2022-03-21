@@ -6,36 +6,37 @@
     <section class="user">
         {{ form_start(addressForm) }}
 
-        <div class="row">
-            <div class="col-3">
-                {{ form_row(addressForm.name) }}
+            <div class="row">
+                <div class="col-3">
+                    {{ form_row(addressForm.name) }}
+                </div>
+                <div class="col-9">
+                    {{ form_row(addressForm.street) }}
+                </div>
             </div>
-            <div class="col-6">
-                {{ form_row(addressForm.street) }}
+            
+            <div class="row">
+                <div class="col-6">
+                    {{ form_row(addressForm.complement) }}
+                </div>
+                <div class="col-3">
+                    {{ form_row(addressForm.zip) }}
+                </div>
+                <div class="col-3">
+                    {{ form_row(addressForm.city) }}
+                </div>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-6">
-                {{ form_row(addressForm.complement) }}
-            </div>
-            <div class="col-3">
-                {{ form_row(addressForm.zip) }}
-            </div>
-            <div class="col-3">
-                {{ form_row(addressForm.city) }}
-            </div>
-        </div>
-        {% if cart is not empty %}
-            <div class="col-12 d-flex justify-content-end">
-                <a href="{{ path('payment') }}" class="btn btn-success">Créer et payer</a>
-            </div>
-        {% else %}
-        <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('profile_address') }}" class="btn btn-success">Créer / Modifier</a>
-        </div>
-        {% endif %}
-        
+            {% if cart is not empty %}
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="{{ path('profile_address') }}" class="btn btn-danger me-3">Annuler</a>
+                    <a href="{{ path('payment') }}" class="btn btn-success">Créer et payer</a>
+                </div>
+            {% else %}
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="{{ path('profile_address') }}" class="btn btn-danger m-3">Annuler</a>
+                    <button class="btn btn-success m-3">Créer / Modifier</button>
+                </div>
+            {% endif %}
             
         {{ form_end(addressForm) }}
     </section>

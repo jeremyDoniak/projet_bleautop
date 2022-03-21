@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,29 +32,11 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/user/create', name: 'profile_create')]
-    public function createUser(Request $request, ManagerRegistry $managerRegistry)
+    #[Route('/profile/user/update', name: 'profile_update')]
+    public function updateUser(UserRepository $userRepository, Request $request, ManagerRegistry $managerRegistry)
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $managerRegistry->getManager();
-            $manager->persist($user);
-            $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été ajouté');
-            return $this->redirectToRoute('profile_index');
-        }
-        return $this->render('profile/userForm.html.twig', [
-            'userForm' => $form->createView()
-        ]);
-    }
-
-    #[Route('/profile/user/update/{id}', name: 'profile_update')]
-    public function updateUser(UserRepository $userRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
-    {
-        $user = $userRepository->find($id);
-        $form = $this->createForm(UserType::class, $user);
+        $user = $userRepository->find($this->getUser());
+        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,23 +47,23 @@ class UserController extends AbstractController
             return $this->redirectToRoute('profile_index');
         }
             
-        return $this->render('profile/userForm.html.twig', [
-            'userForm' => $form->createView(),
+        return $this->render('profile/userRegister.html.twig', [
+            'registrationForm' => $form->createView(),
             'user' => $user,
         ]);
     }
 
-    #[Route('/profile/user/delete/{id}', name: 'profile_delete')]
-    public function deleteUser(UserRepository $userRepository, int $id, ManagerRegistry $managerRegistry)
-    {
-        $user = $userRepository->find($id);
+    // #[Route('/profile/user/delete/{id}', name: 'profile_delete')]
+    // public function deleteUser(UserRepository $userRepository, int $id, ManagerRegistry $managerRegistry)
+    // {
+    //     $user = $userRepository->find($id);
                 
-        $manager = $managerRegistry->getManager();
-        $manager->remove($user);
-        $manager->flush();
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
-        return $this->redirectToRoute('profile_index');
-    }
+    //     $manager = $managerRegistry->getManager();
+    //     $manager->remove($user);
+    //     $manager->flush();
+    //     $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+    //     return $this->redirectToRoute('profile_index');
+    // }
 
     /**************** ADMIN CONTROL ********************/
 

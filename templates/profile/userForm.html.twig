@@ -13,9 +13,11 @@
                 <div class="col-4">
                     {{ form_row(userForm.email) }}
                 </div>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <div class="col-4">
                     {{ form_row(userForm.roles, {'label': 'Role'})}}
                 </div>
+                {% endif %}
             </div>
 
             <div class="row">

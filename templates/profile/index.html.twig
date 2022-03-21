@@ -4,6 +4,17 @@
 
 {% block body %}
         <section class="user">
+            <div class="row py-5">
+                <div class="col-8 offset-2">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
             <h1>Mon profil</h1>
 
             <div class="card_user_container">

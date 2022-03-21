@@ -18,7 +18,7 @@ class PaymentController extends AbstractController
     {
         $authorizedReferers = [
             'https://127.0.0.1:8000/cart',
-            'https://127.0.0.1:8000/profile/address/create'
+            'https://127.0.0.1:8000/profile/addressSelect'
         ];
         if (!in_array($request->headers->get('referer'), $authorizedReferers)) {
             return $this->redirectToRoute('cart_index');

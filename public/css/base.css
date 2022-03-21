@@ -496,7 +496,7 @@ footer p {
 /*//////////////////////////////// PAGE - CGU - CGV ////////////////////////////////*/
 
 .cgucgv {
-    height: 860px;
+    min-height: 860px;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
 }

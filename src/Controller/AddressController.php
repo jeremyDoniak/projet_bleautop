@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Address;
 use App\Form\AddressType;
 use App\Service\CartService;
+use App\Form\UserAddressType;
 use App\Repository\AddressRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,8 +32,6 @@ class AddressController extends AbstractController
         $form = $this->createForm(AddressType::class, $address);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $userId = $this->getUser();
-            $address->setUser($userId);
             $manager = $managerRegistry->getManager();
             $manager->persist($address);
             $manager->flush();
@@ -79,6 +78,15 @@ class AddressController extends AbstractController
 
     /*************************** PROFILE **********************************/
 
+    #[Route('/profile/addressSelect', name: 'profile_address_select')]
+    public function selectUserAddress(AddressRepository $addressRepository): Response
+    {
+        $address = $addressRepository->findBy(['user' => $this->getUser()]);
+        return $this->render('profile/addressSelect.html.twig', [
+            'addresses' => $address,
+        ]);
+    }
+
     #[Route('/profile/address', name: 'profile_address')]
     public function indexUserAddress(AddressRepository $addressRepository): Response
     {
@@ -92,9 +100,8 @@ class AddressController extends AbstractController
     public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService)
     {
         $cart = $cartService->getCart();
-        $total = $cartService->getTotal();
         $address = new Address();
-        $form = $this->createForm(AddressType::class, $address);
+        $form = $this->createForm(UserAddressType::class, $address);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $userId = $this->getUser();
@@ -107,16 +114,16 @@ class AddressController extends AbstractController
         }
         return $this->render('profile/addressForm.html.twig', [
             'cart' => $cart,
-            'total' => $total,
             'addressForm' => $form->createView()
         ]);
     }
 
     #[Route('/profile/address/update/{id}', name: 'profile_address_update')]
-    public function updateUserAddress(AddressRepository $addressRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+    public function updateUserAddress(Request $request, ManagerRegistry $managerRegistry, AddressRepository $addressRepository, int $id, CartService $cartService)
     {
+        $cart = $cartService->getCart();
         $address = $addressRepository->find($id);
-        $form = $this->createForm(AddressType::class, $address);
+        $form = $this->createForm(UserAddressType::class, $address);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -124,17 +131,18 @@ class AddressController extends AbstractController
             $manager->persist($address);
             $manager->flush();
             $this->addFlash('success', 'L\'adresse a bien été modifiée');
-            return $this->redirectToRoute('profile_address_index');
+            return $this->redirectToRoute('profile_address');
         }
             
         return $this->render('profile/addressForm.html.twig', [
+            'cart' => $cart,
             'addressForm' => $form->createView(),
             'addresses' => $address
         ]);
     }
 
     #[Route('/profile/address/delete/{id}', name: 'profile_address_delete')]
-    public function deleteUserAddress(AddressRepository $addressRepository, int $id, ManagerRegistry $managerRegistry)
+    public function deleteUserAddress(AddressRepository $addressRepository, ManagerRegistry $managerRegistry, int $id)
     {
         $address = $addressRepository->find($id);
                 
@@ -142,6 +150,6 @@ class AddressController extends AbstractController
         $manager->remove($address);
         $manager->flush();
         $this->addFlash('success', 'L\'adresse a bien été supprimée');
-        return $this->redirectToRoute('profile_address_index');
+        return $this->redirectToRoute('profile_address');
     }
 }

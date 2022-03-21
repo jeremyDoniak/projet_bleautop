@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class AddressType extends AbstractType
+class UserAddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -56,10 +56,6 @@ class AddressType extends AbstractType
                     'maxLength' => 255,
                     'placeholder' => 'Ex.: Paris'
                 ]
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'name'
             ])
         ;
     }

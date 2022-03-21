@@ -71,11 +71,14 @@
                             {% endif %}
                         </li>
                         <li>
-                           <div id="cart">Panier</div>
+                           <div id="cart">Panier ({{ app.session.get('cart')|length|default('0') }})</div>
                         </li>
                         <li>
                             {% if app.user %}
                                 <a href="{{ path('profile_index') }}">Bonjour {{ app.user.name }} !</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('admin') }}">Admin</a>
+                                {% endif %}
                             {% endif %}
                         </li>
                     </ul>
