@@ -32,14 +32,14 @@
                 {% for order in orders %}
                     <tr class="align-middle">
                         <td>{{ loop.index }}</td>
-                        <td>{{ order.user.name }}</td>
-                        <td>{{ order.order_date }}</td>
-                        <td>{{ order.payment_date }}</td>
-                        <td>{{ order.amount }}</td>
+                        <td>{{ orders.user.name }}</td>
+                        <td>{{ orders.order_date }}</td>
+                        <td>{{ orders.payment_date }}</td>
+                        <td>{{ orders.amount }}</td>
                         <td>
                             <a href="{{ path('admin_order_line', {'id': order.id}) }}" class="text-danger"><i class="fas fa-eye">Détails</i></a>
-                            <a href="{{ path('admin_order_update', {'id': order.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                            <a href="{{ path('admin_order_delete', {'id': order.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{{ path('admin_order_update', {'id': order.id}) }}" class="text-primary"><i class="fas fa-pen-square">Modifier</i></a>
+                            <a href="{{ path('admin_order_delete', {'id': order.id}) }}" class="text-danger"><i class="fas fa-trash-alt">Supprimer</i></a>
                         </td>
                     </tr>
                 {% endfor %}

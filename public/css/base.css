@@ -9,6 +9,20 @@
 
 }
 
+:root {
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 1.4rem;
+}
+
+@media screen and (min-width: 992px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +30,8 @@
     color: #B5C1BA;
     text-decoration: none !important;
     list-style: none !important;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
 }
 
 h1, h2, h3 {
@@ -36,6 +52,7 @@ p {
     background-color: #dfd6cb;
     border-radius: 2em;
     padding: 1em 2em 1em 2em;
+    margin: 0px 5px 0px 5px;
     text-align:center;
     position: relative;
 }
@@ -55,10 +72,22 @@ p {
     color: #dfd6cb;
 }
 
+.btn-products {
+    display: flex;
+}
+
+/* .text-end {
+    display: flex;
+} */
+
+tbody, td, tfoot, th, thead, tr {
+    color: #303031;
+}
+
 /****************** HEADER *******************/
 
 header {
-    width: 100%;
+    width: 100vw;
     height: 80px;
     max-height: 80px;
     background-color: #303031;
@@ -80,28 +109,55 @@ header {
     .logos {
         height: 80px;
         max-height: 80px;
+        max-width: 300px;
         display: flex;
         align-items: center;
     }
 
+    .logos a {
+        width: 75%;
+    }
+
     .logos_sociaux {
-        padding-top: 1em;
+        display: flex;
+        flex: 1;
+    }
+
+    .logos img {
+        width: 100%;
     }
 
         .logos_sociaux img {
             width: 1.2em;
-            margin-right: 0.5em;
+            margin-right: 0.3em;
         }
 
     #cart {
         border: #B5C1BA solid 2px;
     }
 
+    .dropdown-menu {
+        background-color: #303031;
+    }
+
+    .dropdown-divider {
+        background-color: #B5C1BA;
+        color: #B5C1BA ;
+        border: #B5C1BA solid 2px;
+    }
+
+    nav {
+        position: relative;
+
+    }
+
     nav ul {
         margin: 0;
         padding: 0;
+        display: flex;
+        align-items: center;
     }
-
+    
     nav li {
         display: inline-block;
         align-items: center;
@@ -109,21 +165,60 @@ header {
 
         li a, li #cart {
             border-radius: 20px;
-            padding: 0.5em 1em 0.5em 1em;
+            padding: 0.5em 0.4em 0.5em 0.4em;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
             color: #B5C1BA !important;
         }
+        
+        nav a:hover, #cart:hover, .dropdown-item:hover {
+            background-color: #B5C1BA ;
+            color: #303031 !important;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        
+        nav input {
+            display: none;
+        }
+        
+        @media screen and (max-width: 992px) {
+            nav ul {
+                margin: 0;
+                padding: 0;
+                /* width: 100vh; */
+                background-color: #303031;
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+            }
+        }
+    
+        @media screen and (min-width: 992px) {
+            .hamburger {
+                display: none;
+            }
+        }
+    
+        [id=nav-hamburger]:checked + ul {
+            display:flex;
+            align-items: center;
+            justify-content:center;
+            flex-wrap: wrap;
+            width: 80vw;
+            padding: 0.8rem;
+        }
 
-    nav a:hover, #cart:hover {
-        background-color: #B5C1BA ;
-        color: #303031 !important;
-        transition: all 0.3s ease-in-out;
+    svg rect {
+        fill: #B5C1BA;
+        border-radius: 3px;
         cursor: pointer;
     }
 
 .cart_resume {
     visibility: hidden;
+    color: #303031 !important;
     background-color: rgba(48, 48, 49, 0.8);
     max-width: 100%;
     height: 930px;
@@ -132,8 +227,9 @@ header {
 }
 
 .cart_container {
+    color: #303031 !important;
     background-color:#f5f5f5;
-    height: 865px;
+    height: 90vh;
     width: 35%;
     max-width: 40%;
     padding: 1em 1em 3em 1em;
@@ -150,12 +246,25 @@ header {
 
     .cart_container li {
         margin-bottom: 0.8em;
-        color: #303031;
+        color: #303031 !important;
     }
 
     .cart_container img {
         max-width: 80px;
         width: 80px;
+    }
+
+    @media screen and (max-width: 992px) {
+        .cart_resume {
+            justify-content: center;
+        }
+
+        .cart_container {
+            max-width: 80%;
+            width:80%;
+            height: 80vh;
+            top: 8rem;
+        }
     }
 
 /****************** FOOTER *******************/
@@ -175,12 +284,13 @@ footer {
         padding-right: 10%; 
         display: flex;
         justify-content: space-between;
-        align-items: center;  
+        align-items: center;
+        flex-wrap: wrap;  
     }
 
 footer p {
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 /*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
@@ -203,7 +313,7 @@ footer p {
         left: -2000px;
         width: 450px;
         position: relative;
-        font-size: 50px;
+        font-size: 3rem;
         color: #f5f5f5;
         text-align: right;
         max-height: 120px;
@@ -253,7 +363,7 @@ footer p {
 
     .carousel_container {
         max-width: 100%;
-        height: 460px;
+        /* height: 460px; */
         background-color: #f5f5f5;
         display: flex;
         justify-content:center;
@@ -282,17 +392,17 @@ footer p {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 240px;
+            bottom: 0;
         }
 
             .carousel_item p {
-                font-size: 30px;
+                font-size: 2rem;
                 color: #B5C1BA ;
                 text-align: center;
                 background-color: rgba(48, 48, 49, 0.8);
                 border-radius: 2em;
                 padding: 0.5em;
-                margin-bottom: 1.5em;
+                margin-bottom: 1.2em;
                 white-space: nowrap;
             }
 
@@ -311,9 +421,9 @@ footer p {
 /****************** SECTION-3 RENOVATION *******************/
 
 .sec_renov {
-    height: 460px;
+    /* height: 460px; */
     background-color: #f5f5f5;
-    padding: 0 10% 0 10%;
+    padding: 50px 10% 50px 10%;
     display: flex;
     flex-direction: column;
 }
@@ -323,17 +433,28 @@ footer p {
     }
 
     .renov_container {
-        height: 410px;
+        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 0.8em; 
     }
 
-        .renov_container div {
-            width: 30%;
-            max-height: 410px;
+    .renov_container div {
+        width: 32%;
+        height: 100%;
+    }
+
+    @media screen and (max-width: 992px) {
+        .renov_container {
+            display: flex;
+            flex-direction: column;
         }
+
+        .renov_container div {
+            width: 100%;
+            height: 100%;
+        }
+    }
 
             .sec_renov li {
                 color: #303031;
@@ -359,28 +480,40 @@ footer p {
 }
 
 .plus .btn {
-    white-space: nowrap;
-    width: 40%;
+    /* white-space: nowrap; */
+    width: 60%;
 }
 
 /****************** SECTION-4 ABOUT *******************/
 
 .sec_about {
-    height: 460px;
+    /* height: 460px; */
     background-color: #303031;
-    padding: 0 10% 0 10%;
+    padding: 50px 10% 50px 10%;
 }
 
 .our_values {
-    height: 460px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;  
+    align-items: flex-start;  
 }
 
 .our_values div {
     width: 30%;
-    max-height: 460px;
+    height: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .our_values {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .our_values div {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .sec_about p{
@@ -391,24 +524,34 @@ footer p {
 /****************** SECTION-5 INFO *******************/
 
 .sec_info {
-    height: 460px;
+    /* height: 460px; */
     background-color: #f5f5f5;
-    padding: 0 10% 0 10%;
+    padding: 50px 10% 50px 10%;
 }
 
 .informations {
-    height: 460px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: top;
-
 }
 
 .informations div {
-    width: 30%;
-    max-height: 460px;
+    width: 25%;
+    height: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+@media screen and (max-width: 992px) {
+    .informations {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .informations div {
+        width: 100%;
+    }
 }
 
 .sec_info p{
@@ -452,45 +595,16 @@ footer p {
     margin-bottom: 1.8em;
 }
 
-.form {
-    width: 100%;
-    max-width: 100%;
-}
-
-.form form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;  
-}
-
-.form .btn {
-    border: hidden;
-}
-
-.form form span {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 1.8em;
-}
-
-.form form p {
-    width: 100%;
-    max-width: 100%;
-}
-
-.form form span label{
-    color: #303031;
-    margin-left: 10px;
-}
-
 #email {
     width: 100%;
     max-width: 100%;
     border-radius: 1.5em;
     border-color: #303031;
     padding: 0.8em;
+}
+
+iframe {
+    width: 100%;
 }
 
 /*//////////////////////////////// PAGE - CGU - CGV ////////////////////////////////*/
@@ -868,7 +982,7 @@ footer p {
 }
 
 .card_produits {
-    width: 30%;
+    width: 25%;
     height: 650px;
     display: flex;
     flex-direction: column;
@@ -918,20 +1032,23 @@ footer p {
 /*//////////////////////////////// PAGE - CART ////////////////////////////////*/
 
 .cart {
+    color: #303031 !important;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
 }
 
 .cart div{
     padding: 1em;
+    color: #303031 !important;
 }
 
 .cart p, .cart h1{
     text-align:center;
-    color: #303031;
+    color: #303031 !important;
 }
 
 .cart h1 {
+    color: #303031 !important;
     font-size: 40px;
 }
 

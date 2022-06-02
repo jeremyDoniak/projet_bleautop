@@ -28,8 +28,8 @@
             </div>
             {% if cart is not empty %}
                 <div class="col-12 d-flex justify-content-end">
-                    <a href="{{ path('profile_address') }}" class="btn btn-danger me-3">Annuler</a>
-                    <a href="{{ path('payment') }}" class="btn btn-success">Créer et payer</a>
+                    <a href="{{ path('profile_address_select') }}" class="btn btn-danger me-3">Annuler</a>
+                    <button class="btn btn-success m-3">Créer et payer</button>
                 </div>
             {% else %}
                 <div class="col-12 d-flex justify-content-end">

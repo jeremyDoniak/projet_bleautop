@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Form\OrderType;
 use App\Repository\OrderRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,11 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
-    #[Route('/order', name: 'order_index')]
+    #[Route('/profile/order', name: 'profile_order')]
     public function index(OrderRepository $orderRepository): Response
     {
-        $order = $orderRepository->findAll();
-        return $this->render('order/index.html.twig', [
+        $order = $orderRepository->findBy(['user' => $this->getUser()]);;
+        return $this->render('profile/order.html.twig', [
             'orders' => $order,
         ]);
     }
@@ -43,7 +44,7 @@ class OrderController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($order);
             $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été ajouté');
+            $this->addFlash('success', 'La commande a bien été ajoutée');
             return $this->redirectToRoute('admin_order_index');
         }
         return $this->render('admin/orderForm.html.twig', [
@@ -62,7 +63,7 @@ class OrderController extends AbstractController
             $manager = $managerRegistry->getManager();
             $manager->persist($order);
             $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été modifié');
+            $this->addFlash('success', 'La commande a bien été modifiée');
             return $this->redirectToRoute('admin_order_index');
         }
             
@@ -80,7 +81,7 @@ class OrderController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($order);
         $manager->flush();
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+        $this->addFlash('success', 'La commande a bien été supprimée');
         return $this->redirectToRoute('admin_order_index');
     }
 }

@@ -7,6 +7,14 @@
         <section class="login">
             <div class="row p-5">
                 <div class="col-4 offset-4">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash-{{ label }} bg-{{ label }} text-light p-3 my-5 rounded">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <h1>Connexion</h1>
                     <form method="post">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,6 +45,9 @@
                 </div>
                 <div class="col-4 offset-4 reg">
                     <a href="{{ path('app_register') }}">Vous n'êtes pas encore inscrit?</a>
+                </div>
+                <div class="col-4 offset-4 reg">
+                    <a href="{{ path('forgotten_password') }}">Mot de passe oublié</a>
                 </div>
             </div>
         </section>

@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Form\OrderType;
 use Stripe\StripeClient;
 use App\Service\CartService;
 use App\Repository\ProductRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +21,7 @@ class PaymentController extends AbstractController
     {
         $authorizedReferers = [
             'https://127.0.0.1:8000/cart',
-            'https://127.0.0.1:8000/profile/addressSelect'
+            'https://127.0.0.1:8000/profile/addressSelect',
         ];
         if (!in_array($request->headers->get('referer'), $authorizedReferers)) {
             return $this->redirectToRoute('cart_index');
@@ -54,13 +57,24 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(Request $request, CartService $cartService): Response
+    public function success(Request $request, CartService $cartService, ManagerRegistry $managerRegistry, SessionInterface $sessionInterface, ProductRepository $productRepository): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
         }
+
+        $order = new Order();
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);
+
+
+        $manager = $managerRegistry->getManager();
+        $manager->persist($order);
+        $manager->flush();
+        $this->addFlash('success', 'La commande a bien été ajoutée');
         $cartService->clear();
         return $this->render('payment/success.html.twig');
+
     }
 
     #[Route('/payment/cancel', name: 'payment_cancel')]

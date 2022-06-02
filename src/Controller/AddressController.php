@@ -79,26 +79,31 @@ class AddressController extends AbstractController
     /*************************** PROFILE **********************************/
 
     #[Route('/profile/addressSelect', name: 'profile_address_select')]
-    public function selectUserAddress(AddressRepository $addressRepository): Response
+    public function selectUserAddress(AddressRepository $addressRepository, cartService $cartService): Response
     {
+        $cart = $cartService->getCart();
         $address = $addressRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/addressSelect.html.twig', [
             'addresses' => $address,
+            'cart' => $cart,
         ]);
     }
 
     #[Route('/profile/address', name: 'profile_address')]
-    public function indexUserAddress(AddressRepository $addressRepository): Response
+    public function indexUserAddress(AddressRepository $addressRepository, cartService $cartService): Response
     {
+        $cart = $cartService->getCart();
         $address = $addressRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/address.html.twig', [
             'addresses' => $address,
+            'cart' => $cart,
         ]);
     }
 
     #[Route('/profile/address/create', name: 'profile_address_create')]
     public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService)
     {
+        $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
         $cart = $cartService->getCart();
         $address = new Address();
         $form = $this->createForm(UserAddressType::class, $address);
@@ -110,7 +115,7 @@ class AddressController extends AbstractController
             $manager->persist($address);
             $manager->flush();
             $this->addFlash('success', 'L\'adresse a bien été ajoutée');
-            return $this->redirectToRoute('profile_address');
+            return $this->redirect($referer);
         }
         return $this->render('profile/addressForm.html.twig', [
             'cart' => $cart,
