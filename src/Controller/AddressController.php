@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Address;
+use App\Form\OrderType;
+use App\Entity\OrderLine;
 use App\Form\AddressType;
 use App\Service\CartService;
 use App\Form\UserAddressType;
@@ -12,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AddressController extends AbstractController
@@ -79,13 +83,44 @@ class AddressController extends AbstractController
     /*************************** PROFILE **********************************/
 
     #[Route('/profile/addressSelect', name: 'profile_address_select')]
-    public function selectUserAddress(AddressRepository $addressRepository, cartService $cartService): Response
+    public function selectUserAddress(Request $request, AddressRepository $addressRepository, cartService $cartService, ManagerRegistry $managerRegistry, SessionInterface $sessionInterface): Response
     {
+        // $order = new Order();
+        // $formAddressSelect = $this->createForm(OrderType::class, $order);
+        // $formAddressSelect->handleRequest($request);
+
+        // if ($formAddressSelect->isSubmitted() && $formAddressSelect->isValid()) {
+        //     $order->setOrderDate(new \DateTime);
+        //     $order->setUser($this->getUser());
+        //     $order->setAmount($cartService->getTotal());
+        //     $manager = $managerRegistry->getManager();
+
+        //     $cart = $cartService->getCart();
+
+        //     foreach ($cart as $item) {
+        //         $orderLine = new OrderLine();
+        //         $orderLine->setProduct($item['product']);
+        //         $orderLine->setOrderNumber($order);
+        //         $orderLine->setQuantity($item['quantity']);
+
+        //         $manager->persist($orderLine);
+        //     }
+
+        //     $manager->persist($order);
+        //     $sessionInterface->set('order', $order);
+        //     $manager->flush();
+
+        //     return $this->redirectToRoute('payment');
+        // }
+
         $cart = $cartService->getCart();
         $address = $addressRepository->findBy(['user' => $this->getUser()]);
+
         return $this->render('profile/addressSelect.html.twig', [
             'addresses' => $address,
             'cart' => $cart,
+            // 'formAddressSelected' => $formAddressSelect->createView(),
+
         ]);
     }
 

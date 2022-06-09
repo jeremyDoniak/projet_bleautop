@@ -44,10 +44,11 @@
             {{ form_row(contactForm.name) }}
             {{ form_row(contactForm.email) }}
             {{ form_row(contactForm.message) }}
-            
+            {{ form_row(contactForm.agreeTerms) }}
+
             <div class="text-end">
                 <p>Vous affirmez avoir pris connaissance de notre Politique de confidentialité. Vous pouvez vous désinscrire à tout moment à l’aide des liens de désinscription ou en nous contactant à l’adresse bleautop@bleautop.fr</p>
-                <button type="submit" class="btn btn-success">Valider</button>
+                <button type="submit" class="btn_shape btn-success">Valider</button>
             </div>
         {{ form_end(contactForm) }}
 

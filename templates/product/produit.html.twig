@@ -39,8 +39,8 @@
             <p>Description: {{ product.description|default(' ') }}</p>
         </div>
     </div>
-    <div class="btn">
-        <a href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success btn-sm">Ajouter au panier</a>
     </div>
 </section>
 

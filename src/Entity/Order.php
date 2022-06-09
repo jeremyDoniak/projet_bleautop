@@ -32,6 +32,10 @@ class Order
     #[ORM\OneToMany(mappedBy: 'order_number', targetEntity: OrderLine::class, orphanRemoval: true)]
     private $orderLines;
 
+    #[ORM\ManyToOne(targetEntity: address::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $address;
+
     public function __construct()
     {
         $this->orderLines = new ArrayCollection();
@@ -116,6 +120,18 @@ class Order
                 $orderLine->setOrderNumber(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }

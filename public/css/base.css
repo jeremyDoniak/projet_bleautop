@@ -9,6 +9,11 @@
 
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 78px;
+}
+
 :root {
     font-size: 12px;
 }
@@ -45,6 +50,15 @@ h3 {
 
 p {
     text-align: justify;
+}
+
+.btn_shape {
+    color: #303031;
+    border-radius: 2em;
+    padding: 1em 2em 1em 2em;
+    margin: 0px 5px 0px 5px;
+    text-align:center;
+    position: relative;
 }
 
 .btn {
@@ -761,7 +775,7 @@ iframe {
 /*//////////////////////////////// PAGE - CONTACT ////////////////////////////////*/
 
 .contact {
-    height: 580px;
+    height: 500px;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
     display: flex;
@@ -781,7 +795,6 @@ iframe {
 .contact div {
     width: 50%;
     max-height: 420px;
-    padding-top: 50px;
 }
 
 .contactez {

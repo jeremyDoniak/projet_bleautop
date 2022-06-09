@@ -4,24 +4,81 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Form\OrderType;
+use App\Entity\OrderLine;
+use App\Service\CartService;
+use App\Form\OrderAddressType;
 use App\Repository\OrderRepository;
+use App\Repository\OrderLineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
     #[Route('/profile/order', name: 'profile_order')]
-    public function index(OrderRepository $orderRepository): Response
+    public function index(OrderRepository $orderRepository, CartService $cartService): Response
     {
-        $order = $orderRepository->findBy(['user' => $this->getUser()]);;
+        $cart = $cartService->getCart();
+        $order = $orderRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/order.html.twig', [
+            'orders' => $order,
+            'cart' => $cart,
+        ]);
+    }
+
+    #[Route('/profile/orderLine/{id}', name: 'profile_order_line')]
+    public function line(OrderLineRepository $orderLineRepository, OrderRepository $orderRepository, int $id): Response
+    {
+        $orderLine = $orderLineRepository->findBy(['order_number' => $id]);
+        $order = $orderRepository->findOneBy(['id' => $id]);
+        return $this->render('profile/orderLine.html.twig', [
+            'orderLines' => $orderLine,
             'orders' => $order,
         ]);
     }
 
+    #[Route('/profile/orderRecap', name: 'profile_order_recap')]
+    public function recap(Request $request, SessionInterface $sessionInterface, CartService $cartService, ManagerRegistry $managerRegistry): Response
+    {
+        $order = new Order();
+        $form = $this->createForm(OrderAddressType::class, $order);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order->setOrderDate(new \DateTime);
+            $order->setUser($this->getUser());
+            $order->setAmount($cartService->getTotal());
+            $manager = $managerRegistry->getManager();
+
+            $cart = $cartService->getCart();
+            
+            foreach ($cart as $item) {
+                $orderLine = new OrderLine();
+                $orderLine->setProduct($item['product']);
+                $orderLine->setOrderNumber($order);
+                $orderLine->setQuantity($item['quantity']);
+
+                $manager->persist($orderLine);
+            }
+            
+            $manager->persist($order);
+            $sessionInterface->set('order', $order);
+            $manager->flush();
+
+            return $this->redirectToRoute('payment');
+        }
+
+        $cart = $cartService->getCart();
+
+        return $this->render('profile/orderRecap.html.twig', [
+            'carts' => $cart,
+            'total' => $cartService->getTotal(),
+            'form' => $form->createView()
+        ]);
+    }
 
     /**************** ADMIN CONTROL ********************/
 
@@ -34,6 +91,17 @@ class OrderController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/orderLine/{id}', name: 'admin_order_line')]
+    public function details(OrderLineRepository $orderLineRepository, OrderRepository $orderRepository, int $id): Response
+    {
+        $orderLine = $orderLineRepository->findBy(['order_number' => $id]);
+        $order = $orderRepository->findOneBy(['id' => $id]);
+        return $this->render('admin/orderLine.html.twig', [
+            'orderLines' => $orderLine,
+            'orders' => $order
+        ]);
+    }
+
     #[Route('/admin/order/create', name: 'admin_order_create')]
     public function create(Request $request, ManagerRegistry $managerRegistry)
     {
@@ -41,6 +109,7 @@ class OrderController extends AbstractController
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $order->setOrderDate(new \DateTime);
             $manager = $managerRegistry->getManager();
             $manager->persist($order);
             $manager->flush();

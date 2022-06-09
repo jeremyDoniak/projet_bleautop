@@ -4,6 +4,7 @@
 
 {% block body %}
     <section class="user">
+        {# {{ form_start(formAddressSelected) }} #}
         <div class="row py-5">
             <div class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
@@ -22,30 +23,24 @@
                 <tr>
                     <th>N°</th>
                     <th>Sélection de l'adresse</th>
-                    <th>Nom de l'adresse</th>
-                    <th>Adresse</th>
-                    <th>Complément d'adresse</th>
-                    <th>Code Postal</th>
-                    <th>Ville</th>
-                </tr>
+                    </tr>
             </thead>
             <tbody>
+                <form action="{{ path('profile_order_recap') }}" method="get">
                 {% for address in addresses %}
                     <tr class="align-middle">
                         <td>{{ loop.index }}</td>
-                        <td><input type="radio" name="selectedAddress"></td>
-                        <td>{{ address.name }}</td>
-                        <td>{{ address.street }}</td>
-                        <td>{{ address.complement }}</td>
-                        <td>{{ address.zip }}</td>
-                        <td>{{ address.city }}</td>
+                        <td><input type="radio" name="$selectedAddress" value="{{ address.id }}" required>
+                        <label for={{ address.id }}>{{ address.name }} {{ address.street }} {{ address.complement }} {{ address.zip }} {{ address.city }}</label></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
         <div class="col-12 d-flex justify-content-end">
             <a href="{{ path('profile_address_create') }}" class="btn btn-primary me-3">Ajouter une adresse</a>
-            <a href="{{ path('payment') }}" class="btn btn-success">Payer</a>
+            <button class="btn_shape btn-success" type="submit">Valider</button> 
         </div>
+    </form>
+        {# {{ form_end(formAddressSelected) }} #}
     </section>
 {% endblock %}

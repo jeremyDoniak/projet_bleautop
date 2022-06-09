@@ -40,7 +40,7 @@
                         <td>{{ address.city }}</td>
                         <td>
                             <a href="{{ path('profile_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                            <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger" onclick="return confirm_delete()"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

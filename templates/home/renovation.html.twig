@@ -21,15 +21,13 @@
                         </div>
                         <div class="check_condition">
                             <span>
-                                <input type="checkbox" name="check">
+                                <input type="checkbox" name="check" required>
                                 <label for="check">J’ai lu et j’accepte les conditions énoncé dans la documentation de validation disponible ci-dessous.</label>
                             </span>
                         </div>
-                        <div class="btn">
-                            {# {% if input.check == 1 %} #}
-                                <a href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
-                            {# {% endif %} #}
-                        </div>
+                        <div>
+                                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success">Ajouter au panier</a>
+                            </div>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -66,7 +64,7 @@
             </div>
         </div>
         <div>
-            <a href="#">Télécharger la documentation : critères de validation (pdf)</a>
+            <a href="\bleautop\public\web\projet_bleautop_charte_graphique.pdf" download>Télécharger la documentation : critères de validation (pdf)</a>
         </div>
     </section>
 

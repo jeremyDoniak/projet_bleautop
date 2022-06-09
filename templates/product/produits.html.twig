@@ -38,8 +38,8 @@
                     <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
                 </div>
                 <div class="text-end btn-products">
-                    <a href="{{ path('produits', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">+ info</a>
-                    <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success btn-sm">Ajouter au panier</a>
+                    <a href="{{ path('produit', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">+ info</a>
+                    <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success btn-sm">Ajouter au panier</a>
                 </div>
             </div>
         {% endfor %}

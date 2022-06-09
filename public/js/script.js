@@ -102,3 +102,8 @@ function slidePrecedent(){
 }
 precedent.addEventListener('click', slidePrecedent);
 
+/****************** PREVENT DELETE *******************/
+
+function confirm_delete() {
+  return confirm('are you sure?');
+}

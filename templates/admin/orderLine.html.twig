@@ -4,27 +4,38 @@
 
 {% block body %}
     <section class="user">
-        <h1>Liste des différentes commandes</h1>
+        <h1>Détails de la commande n° {{ orders.id }}</h1>
 
         <table class="table text-center table-hover table-sm">
             <thead>
                 <tr>
                     <th>N°</th>
-                    <th>Numéro de commande</th>
                     <th>Produit</th>
                     <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Sous-total</th>
                 </tr>
             </thead>
             <tbody>
-                {% for order in orders %}
+                {% for line in orderLines %}
                     <tr class="align-middle">
-                        <td>{{ loop.index }}</td>
-                        <td>{{ order.order_number }}</td>
-                        <td>{{ order.product }}</td>
-                        <td>{{ order.quantity }}</td>
+                        <td><img src="{{ asset('img/' ~ line.product.img) }}" alt="photo principale {{ line.product.name }}" class="me-3">
+                            {{ line.product.name }} {{ line.product.types.name|default(' ') }} {{ line.product.size.name|default(' ') }} {{ line.product.color.name|default(' ') }} {{ line.product.angle.name|default(' ') }} {{ line.product.drilling.name|default(' ') }}</td>
+                        <td>{{ line.quantity }}</td>
+                        <td>{{ line.product.price }} €</td>
+                        <td>{{ (line.product.price * line.quantity)|number_format(0, ',', ' ') }} €</td>
                     </tr>
-                {% endfor %}
-            </tbody>
+                    {% endfor %}
+                </tbody>
+                    <tfoot class="table-secondary text-end">
+                        <tr class="fw-bold">
+                            <th colspan="12">TOTAL :</th>
+                            <th>{{ orders.amount|number_format(0, ',', ' ') }} €</th>
+                        </tr>
+                    </tfoot>
         </table>
+        <div class="text-end">
+            <a href="{{ path('admin_order_index') }}" class="btn btn-outline-secondary btn-sm">Retour</a>
+        </div>
     </section>
 {% endblock %}

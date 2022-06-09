@@ -5,7 +5,11 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Form\OrderType;
 use Stripe\StripeClient;
+use App\Entity\OrderLine;
 use App\Service\CartService;
+use App\Form\OrderAddressType;
+use App\Repository\OrderRepository;
+use App\Repository\AddressRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +25,7 @@ class PaymentController extends AbstractController
     {
         $authorizedReferers = [
             'https://127.0.0.1:8000/cart',
-            'https://127.0.0.1:8000/profile/addressSelect',
+            'https://127.0.0.1:8000/profile/orderRecap',
         ];
         if (!in_array($request->headers->get('referer'), $authorizedReferers)) {
             return $this->redirectToRoute('cart_index');
@@ -57,32 +61,33 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(Request $request, CartService $cartService, ManagerRegistry $managerRegistry, SessionInterface $sessionInterface, ProductRepository $productRepository): Response
+    public function success(Request $request, OrderRepository $orderRepository, CartService $cartService, ManagerRegistry $managerRegistry, SessionInterface $sessionInterface): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
         }
+        $orderId = $orderRepository->find($sessionInterface->get('order', [0]));
 
-        $order = new Order();
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
-
-
-        $manager = $managerRegistry->getManager();
-        $manager->persist($order);
+        $orderId->setPaymentDate(new \DateTime);
+        $manager= $managerRegistry->getManager();
+        $manager->persist($orderId);
         $manager->flush();
-        $this->addFlash('success', 'La commande a bien été ajoutée');
+        $sessionInterface->remove('order');
         $cartService->clear();
         return $this->render('payment/success.html.twig');
 
     }
 
     #[Route('/payment/cancel', name: 'payment_cancel')]
-    public function cancel(Request $request): Response
+    public function cancel(Request $request, ManagerRegistry $managerRegistry, OrderRepository $orderRepository, SessionInterface $sessionInterface): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
         }
+        $orderId = $orderRepository->find($sessionInterface->get('order', [0]));
+        $manager = $managerRegistry->getManager();
+        $manager->remove($orderId);
+        $manager->flush();
         return $this->render('payment/cancel.html.twig');
     }
 }
