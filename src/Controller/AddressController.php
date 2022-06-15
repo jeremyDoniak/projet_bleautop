@@ -150,6 +150,10 @@ class AddressController extends AbstractController
             $manager->persist($address);
             $manager->flush();
             $this->addFlash('success', 'L\'adresse a bien été ajoutée');
+
+            if ($cart !== null){
+                return $this->redirectToRoute('profile_order_recap');
+            }
             return $this->redirect($referer);
         }
         return $this->render('profile/addressForm.html.twig', [

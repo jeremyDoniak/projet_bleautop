@@ -44,8 +44,14 @@ h1, h2, h3 {
 }
 
 h3 {
-    font-size: 40px;
+    font-size: 2.5rem;
     text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+    h3 {
+        font-size: 1.5rem;
+    }
 }
 
 p {
@@ -71,6 +77,18 @@ p {
     position: relative;
 }
 
+@media screen and (max-width: 992px) {
+    .btn {
+        padding: 0.5em 1em 0.5em 1em;
+        margin: 0.3em 0.5em 0.3em 0.5em;
+    }
+
+    .btn_shape {
+        padding: 0.5em 1em 0.5em 1em;
+        margin: 0.3em 0.5em 0.3em 0.5em;
+    }
+}
+
 .btn a {
     color: #303031;
     text-align:center;
@@ -88,6 +106,13 @@ p {
 
 .btn-products {
     display: flex;
+}
+
+@media screen and (max-width: 992px) {
+    .btn-products {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 /* .text-end {
@@ -150,6 +175,16 @@ header {
         border: #B5C1BA solid 2px;
     }
 
+    #cart img {
+        width: 30px;
+        color: #B5C1BA;
+    }
+
+    #cart svg:hover path, #cart svg:hover circle{
+        fill:#303031 !important;
+    }
+        
+
     .dropdown-menu {
         background-color: #303031;
     }
@@ -180,6 +215,7 @@ header {
         li a, li #cart {
             border-radius: 20px;
             padding: 0.5em 0.4em 0.5em 0.4em;
+            margin: 0 0.3em 0 0.3em;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
             color: #B5C1BA !important;
@@ -190,6 +226,7 @@ header {
             color: #303031 !important;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
+            fill: #303031 !important;
         }
         
         nav input {
@@ -280,6 +317,10 @@ header {
             top: 8rem;
         }
     }
+
+.baseflash {
+    position: relative;
+}
 
 /****************** FOOTER *******************/
 
@@ -593,7 +634,11 @@ footer p {
 
 .logos_sociaux2 {
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
+}
+
+.logos_sociaux2 a{
+    margin: 0 0.3em 0 0.3em;
 }
 
 .aide {
@@ -663,37 +708,70 @@ iframe {
 
 /****************** Partie - 1 *******************/
 
+.card_produit_container {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+.card_produit {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    .card_produit {
+        width: 45%;
+    }
+}
+
+.card_produit div {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.card_produit div img {
+    max-width: 100%;
+    max-height: 200px;
+}
+
 .renovation h2, .renovation p, .renovation label {
     color: #303031;
 }
 
 .renovation b, .renovation h2 {
     color: #303031;
-    font-size: 30px;
+    font-size: 2rem;
     white-space: nowrap;
 }
 
 .renovation h1 {
     color: #303031;
-    font-size: 50px;    
+    font-size: 3rem;
+    text-align:center;    
 }
 
 .arrow_down a {
-    font-size: 80px;
+    font-size: 4rem;
     color: #B5C1BA;
     cursor: pointer;
     z-index: 8000;
 }
 
 .arrow_down a:hover {
-    font-size: 80px;
+    font-size: 4rem;
     color: #303031;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .renovation {
-    height: 980px;
     background-color: #f5f5f5;
     padding: 120px 10% 0 10%;
     display: flex;
@@ -722,18 +800,12 @@ iframe {
 
 /****************** Partie - 2 *******************/
 .renov_forfait {
-    height: 980px;
-    background-color: #f5f5f5;
+    background-color: #303031;
     padding: 0 10% 0 10%;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
-}
-
-.renov_forfait {
-    height: 820px;
-    background-color: #303031;
 }
 
 .renov_forfait a {
@@ -742,16 +814,21 @@ iframe {
 
 .renov_forfait div{
     display: flex;
-    margin: 3em;
+    margin: 1.5em;
+}
+
+@media screen and (max-width: 992px) {
+    .renov_forfait div{
+        display: flex;
+        flex-direction: column;
+        margin: 1em;
+    }
 }
 
 .card_forfait{
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    width: 350px;
-    margin-left: 8em !important;
-    margin-right: 8em !important;
 }
 
 .renov_forfait h2, .renov_forfait p{
@@ -759,12 +836,12 @@ iframe {
 }
 
 .renov_forfait h2 {
-    font-size: 40px;
+    font-size: 3rem;
     margin-bottom: 0.5em;
 }
 
 .renov_forfait b {
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .renov_forfait a {
@@ -868,7 +945,7 @@ iframe {
 
 .produit {
     background-color:#f5f5f5;
-    height: 100vh;
+    height: 130vh;
     max-width: 100%;
     padding: 80px 10% 0 10%;
 }
@@ -885,12 +962,17 @@ iframe {
 }
 
 .produit li {
-    width: 120px;
     display: inline-block;
     align-items: center;
     margin: 0 1em;
     border: #303031 solid 1px;
     border-radius: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .produit li {
+    margin: 0 0.3em;
+    }
 }
 
     .produit li a {
@@ -915,21 +997,34 @@ iframe {
 
 .produit b {
     color: #303031 !important;
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .produit .card_produit {
     display: flex;
 }
 
+@media screen and (max-width: 992px) {
+
+    .produit .card_produit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 .produit .btn {
-    margin: 0 40em;
+    margin: 0 1rem;
     display: flex;
     justify-content:center;
 }
 
 .produit .btn a:hover{
     background-color: #303031;
+}
+
+.card_produit div img {
+    max-width: 100%;
 }
 
 /*//////////////////////////////// PAGE - PRODUITS ////////////////////////////////*/
@@ -954,13 +1049,19 @@ iframe {
 }
 
 .produits li {
-    width: 120px;
     display: inline-block;
     align-items: center;
     margin: 0 1em;
     border: #303031 solid 1px;
     border-radius: 20px;
 }
+
+@media screen and (max-width: 992px) {
+    .produits li {
+    margin: 0 0.3em;
+    }
+}
+
 
     .produits li a {
         padding: 0 0.5em;
@@ -984,22 +1085,29 @@ iframe {
 
 .produits b {
     color: #303031 !important;
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .card_produits_container {
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content:space-evenly;
 }
 
 .card_produits {
     width: 25%;
-    height: 650px;
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    .card_produits {
+        width: 45%;
+    }
 }
 
 .card_produits div {
@@ -1024,7 +1132,7 @@ iframe {
 /*//////////////////////////////// PAGE - LOGIN ////////////////////////////////*/
 
 .login {
-    height: 860px;
+    max-height: 100vh;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
 }
@@ -1039,7 +1147,7 @@ iframe {
 }
 
 .login h1 {
-    font-size: 40px;
+    font-size: 2rem;
 }
 
 /*//////////////////////////////// PAGE - CART ////////////////////////////////*/
@@ -1048,11 +1156,7 @@ iframe {
     color: #303031 !important;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
-}
-
-.cart div{
-    padding: 1em;
-    color: #303031 !important;
+    min-height: 100vh;
 }
 
 .cart p, .cart h1{
@@ -1062,17 +1166,23 @@ iframe {
 
 .cart h1 {
     color: #303031 !important;
-    font-size: 40px;
+    font-size: 2rem;
+}
+
+.cart h2 {
+    color: #303031 !important;
+    font-size: 1.5rem;
 }
 
 .cart table img {
-    width: 100px;
+    max-width: 100%;
+    max-height: 200px;
 }
 
 /*//////////////////////////////// PAGE - REGISTER ADDRESS ////////////////////////////////*/
 
 .regAddress {
-    min-height: 860px;
+    min-height: 100vh;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
 }
@@ -1087,7 +1197,7 @@ iframe {
 }
 
 .regAddress h1 {
-    font-size: 40px;
+    font-size: 2rem;
 }
 
 .regAddress table img {
@@ -1097,7 +1207,7 @@ iframe {
 /*//////////////////////////////// PAGE - USER ////////////////////////////////*/
 
 .user {
-    min-height: 860px;
+    min-height: 100vh;
     background-color: #f5f5f5;
     padding: 80px 10% 0 10%;
 }
@@ -1112,7 +1222,7 @@ iframe {
 }
 
 .user h1 {
-    font-size: 40px;
+    font-size: 2rem;
 }
 
 .user table img {
@@ -1149,6 +1259,25 @@ iframe {
     justify-content:center;
 }
 
-.user .btn a:hover{
+.user .btn a:hover {
     background-color: #303031;
+}
+
+/*//////////////////////////////// PAGE - ERREUR ////////////////////////////////*/
+
+.erreur {
+    height: 100vh;
+    padding: 10% 10% 0 10%;
+}
+
+.erreur h1, .erreur h2 {
+    color: #303031 !important;
+}
+
+.erreur h1 {
+    font-size: 2rem;
+}
+
+.erreur h2 {
+    font-size: 1.5rem;
 }

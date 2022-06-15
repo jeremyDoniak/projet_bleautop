@@ -30,6 +30,7 @@ class CartController extends AbstractController
     {
         $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
         $cartService->add($id);
+        $this->addFlash('success', 'Le produit a bien été ajouté');
         return $this->redirect($referer);
     }
 

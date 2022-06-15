@@ -3,17 +3,17 @@
 {% block title %}angle{% endblock %}
 
 {% block body %}
-    <div class="row py-5">
-        <div class="col-8 offset-2">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+<span class="row py-3 baseflash">
+    <span class="col-8 offset-2">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                    {{ message }}
+                </div>
             {% endfor %}
-        </div>
-    </div>
+        {% endfor %}
+    </span>
+</span>
 
     <h1>Liste des différents angles</h1>
 
@@ -32,7 +32,7 @@
                     <td>{{ angle.name }}</td>
                      <td>
                         <a href="{{ path('angle_update', {'id': angle.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                        <a href="{{ path('angle_delete', {'id': angle.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('angle_delete', {'id': angle.id}) }}" class="text-danger" onclick="return confirm_delete()"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}

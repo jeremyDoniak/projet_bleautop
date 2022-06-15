@@ -6,10 +6,10 @@
 
     <section class="renovation">
         <h1>Nos offres de rénovation</h1>
-        <div class="card_produits_container">
+        <div class="card_produit_container">
             {% for product in products %}
                 {% if product.category.name == "renovation" %}
-                    <div class="card_produits">
+                    <div class="card_produit">
                         <div>
                             <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
                         </div>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div>
-            <a href="\bleautop\public\web\projet_bleautop_charte_graphique.pdf" download>Télécharger la documentation : critères de validation (pdf)</a>
+            <a href="\web\projet_bleautop_charte_graphique.pdf" target="_blank">Télécharger la documentation : critères de validation (pdf)</a>
         </div>
     </section>
 

@@ -4,6 +4,18 @@
 
 {% block body %}
 
+<span class="row py-3 baseflash">
+    <span class="col-8 offset-2">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </span>
+</span>
+
     <h1>Accueil de l'espace administrateur</h1>
 
     <p>Merci de cliquer sur un lien dans la barre de navigation pour commencer à administrer votre site. Le contenu apparaîtra dans cette section.</p>

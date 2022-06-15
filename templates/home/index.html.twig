@@ -5,17 +5,17 @@
 {% block body %}
 
 <section class="intro_container">
-    <div class="row py-5">
-        <div class="col-8 offset-2">
+    <span class="row py-3 baseflash">
+        <span class="col-8 offset-2">
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                    <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                         {{ message }}
                     </div>
                 {% endfor %}
             {% endfor %}
-        </div>
-    </div>
+        </span>
+    </span>
     <div>
         <h1>'Grimper Bleautop, <br> grimper Fontainebleau'</h1>
     </div>
@@ -112,13 +112,13 @@
                 <br>+33228632669
             </p>
             <div class="logos_sociaux2">
-                <a href="https://www.instagram.com/">
+                <a href="https://www.instagram.com/" target="_blank">
                     <img src="{{ asset('img/logo_instagram_noir_web.png') }}" alt="logo instagram">
                 </a>
-                <a href="https://www.facebook.com/">
+                <a href="https://www.facebook.com/" target="_blank">
                     <img src="{{ asset('img/logo_facebook_noir_web.png') }}" alt="logo facebook">
                 </a>
-                <a href="https://twitter.com/">
+                <a href="https://twitter.com/" target="_blank">
                     <img src="{{ asset('img/logo_twitter_noir_web.png') }}" alt="logo twitter">
                 </a>
             </div>

@@ -4,22 +4,22 @@
 
 {% block body %}
     <section class="user">
-        <div class="row py-5">
-            <div class="col-8 offset-2">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                             {{ message }}
                         </div>
                     {% endfor %}
                 {% endfor %}
-            </div>
-        </div>
+            </span>
+        </span>
         <h1>Votre commande</h1>
         {{ form_start(form)}}
             {{form_row(form.address, {'label':'Sélectionner votre adresse de livraison :'}) }}
 
-        <table class="table align-middle text-center table-hover table-sm">
+        <table class="table align-middle">
             <thead class="text-center table-secondary">
                 <tr class="fw-bold">
                     <th>Produit</th>
@@ -34,16 +34,16 @@
                         <td><img src="{{ asset('img/' ~ cart.product.img) }}" alt="photo principale {{ cart.product.name }}" class="me-3">
                             {{ cart.product.name }} {{ cart.product.types.name|default(' ') }} {{ cart.product.size.name|default(' ') }} {{ cart.product.color.name|default(' ') }} {{ cart.product.angle.name|default(' ') }} {{ cart.product.drilling.name|default(' ') }}
                         </td>
-                        <td>{{ cart.quantity }}</td>
-                        <td>{{ cart.product.price }} €</td>
-                        <td>{{ (cart.product.price * cart.quantity)|number_format(0, ',', ' ') }} €</td>
+                        <td class="text-center">{{ cart.quantity }}</td>
+                        <td class="text-center">{{ cart.product.price|number_format(0, ',', ' ') }} €</td>
+                        <td class="text-center">{{ (cart.product.price * cart.quantity)|number_format(0, ',', ' ') }} €</td>
                 </tr>
                 {% endfor %}
             </tbody>
                 <tfoot class="table-secondary text-end">
                     <tr class="fw-bold">
                         <th colspan="3">TOTAL :</th>
-                        <th>{{ total|number_format(0, ',', ' ') }} €</th>
+                        <th class="text-center">{{ total|number_format(0, ',', ' ') }} €</th>
                     </tr>
                 </tfoot>
         </table>

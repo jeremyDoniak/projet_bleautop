@@ -37,13 +37,13 @@
                     </a>
             
                     <div class="logos_sociaux">
-                        <a href="https://www.instagram.com/">
+                        <a href="https://www.instagram.com/" target="_blank">
                             <img src="{{ asset('img/logo_instagram_gris_web.png') }}" alt="logo instagram">
                         </a>
-                        <a href="https://www.facebook.com/">
+                        <a href="https://www.facebook.com/" target="_blank">
                             <img src="{{ asset('img/logo_facebook_gris_web.png') }}" alt="logo facebook">
                         </a>
-                        <a href="https://twitter.com/">
+                        <a href="https://twitter.com/" target="_blank">
                             <img src="{{ asset('img/logo_twitter_gris_web.png') }}" alt="logo twitter">
                         </a>
                     </div>    
@@ -90,13 +90,24 @@
                             {% endif %}
                         </li>
                         <li>
-                           <div id="cart">Panier | {{ app.session.get('cart')|length|default('0') }}</div>
+                           <div id="cart"><svg width="24px" height="24px" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="shopping-cart"><rect width="24" height="24" opacity="0"/><path d="M21.08 7a2 2 0 0 0-1.7-1H6.58L6 3.74A1 1 0 0 0 5 3H3a1 1 0 0 0 0 2h1.24L7 15.26A1 1 0 0 0 8 16h9a1 1 0 0 0 .89-.55l3.28-6.56A2 2 0 0 0 21.08 7zm-4.7 7H8.76L7.13 8h12.25z" fill="#B5C1BA"/><circle cx="7.5" cy="19.5" r="1.5" fill="#B5C1BA"/><circle cx="17.5" cy="19.5" r="1.5" fill="#B5C1BA"/></g></g></svg> {{ app.session.get('cart')|length|default('0') }}</div>
                         </li>
                     </ul>
                 </nav>
             </div>
            {{ render(controller('App\\Controller\\CartController::getNavCart')) }}
         </header>
+        {# <div class="baseflash row py-5">
+            <div class="col-8 offset-2">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div> #}
 
         {% block body %}{% endblock %}
 

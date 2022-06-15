@@ -11,7 +11,7 @@ $('.cart_container').hide(100);
 // 		$('.cart_resume').fadeToggle(1300);
 // });
 
-$("#cart").click(function(e) {
+$(".cart_resume").click(function(e) {
 	if($(e.target).is('.cart_container')){
 		e.preventDefault();
 		return;
@@ -23,17 +23,18 @@ $("#cart").click(function(e) {
 		$('.cart_resume').fadeToggle(1300);
 });
 
-$(".cart_resume").click(function(e) {
-	if($(e.target).is('.cart_container')){
-		e.preventDefault();
-		return;
-	}
+$("#cart").click(function(e) {
+	// if($(e.target).is('.cart_container')){
+	// 	e.preventDefault();
+	// 	return;
+	// }
 		$('.cart_container').stop();
 		$('.cart_resume').stop();
 		$('.cart_resume').css("visibility", "visible");
 		$('.cart_container').slideToggle(1300);
 		$('.cart_resume').fadeToggle(1300);
-}); 
+});
+
 
 /*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
 
@@ -105,5 +106,6 @@ precedent.addEventListener('click', slidePrecedent);
 /****************** PREVENT DELETE *******************/
 
 function confirm_delete() {
-  return confirm('are you sure?');
+  return confirm('êtes-vous sur?');
 }
+

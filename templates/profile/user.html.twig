@@ -4,17 +4,17 @@
 
 {% block body %}
     <section class="user">
-        <div class="row py-5">
-            <div class="col-8 offset-2">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                             {{ message }}
                         </div>
                     {% endfor %}
                 {% endfor %}
-            </div>
-        </div>
+            </span>
+        </span>
         <h1>Mes informations</h1>
     
         <table class="table text-center table-hover table-sm">

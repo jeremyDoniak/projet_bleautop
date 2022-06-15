@@ -5,15 +5,17 @@
 {% block body %}
     <main class="container-fluid">
         <section class="login">
-            <div class="row p-5">
-                <div class="col-4 offset-4">
+            <span class="row py-3 baseflash">
+                <span class="col-8 offset-2">
                     {% for label, messages in app.flashes %}
                         {% for message in messages %}
-                            <div class="flash-{{ label }} bg-{{ label }} text-light p-3 my-5 rounded">
+                            <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                                 {{ message }}
                             </div>
                         {% endfor %}
                     {% endfor %}
+                </span>
+            </span>
                     <h1>Connexion</h1>
                     <form method="post">
                         {% if error %}
@@ -43,10 +45,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-4 offset-4 reg">
+                <div class="col-8 offset-2">
                     <a href="{{ path('app_register') }}">Vous n'êtes pas encore inscrit?</a>
                 </div>
-                <div class="col-4 offset-4 reg">
+                <div class="col-8 offset-2">
                     <a href="{{ path('forgotten_password') }}">Mot de passe oublié</a>
                 </div>
             </div>

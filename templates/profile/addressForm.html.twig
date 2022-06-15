@@ -26,18 +26,14 @@
                     {{ form_row(addressForm.city) }}
                 </div>
             </div>
-            {% if cart is not empty %}
-                <div class="col-12 d-flex justify-content-end">
-                    <a href="{{ path('profile_address') }}" class="btn_shape btn-danger me-3">Annuler</a>
-                    <button class="btn_shape btn-success me-3"><a href="{{ path('profile_order_recap') }}">Créer et payer</a></button>
-                </div>
-            {% else %}
-                <div class="col-12 d-flex justify-content-end">
-                    <a href="{{ path('profile_address') }}" class="btn btn-danger m-3">Annuler</a>
+            <div class="col-12 d-flex justify-content-end">
+                <a href="{{ path('profile_address') }}" class="btn_shape btn-danger m-3">Annuler</a>
+                {% if cart is not empty %}
+                    <button class="btn_shape btn-success m-3">Créer et payer</button>
+                    {% else %}
                     <button class="btn_shape btn-success m-3">Créer / Modifier</button>
+                    {% endif %}
                 </div>
-            {% endif %}
-            
         {{ form_end(addressForm) }}
     </section>
 {% endblock %}
