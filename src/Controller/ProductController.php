@@ -52,7 +52,7 @@ class ProductController extends AbstractController
     public function produitsRenovation(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findAll();
-        return $this->render('/home/renovation.html.twig', [
+        return $this->render('/product/produits_renovation.html.twig', [
             'products' => $products,
         ]);
     }

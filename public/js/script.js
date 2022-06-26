@@ -11,6 +11,20 @@ $('.cart_container').hide(100);
 // 		$('.cart_resume').fadeToggle(1300);
 // });
 
+$("#nav-hamburger").click(function(e) {
+	// if($(e.target).is('.cart_container')){
+	// 	e.preventDefault();
+	// 	return;
+	// }
+		$('.cart_container').stop();
+		$('.cart_resume').stop();
+		$('.cart_resume').css("visibility", "hidden");
+		$('.cart_resume').hide(100);
+		$('.cart_container').hide(100);
+		// $('.cart_container').slideToggle(1300);
+		// $('.cart_resume').fadeToggle(1300);
+});
+
 $(".cart_resume").click(function(e) {
 	if($(e.target).is('.cart_container')){
 		e.preventDefault();
@@ -34,6 +48,7 @@ $("#cart").click(function(e) {
 		$('.cart_container').slideToggle(1300);
 		$('.cart_resume').fadeToggle(1300);
 });
+
 
 
 /*//////////////////////////////// PAGE - HOME ////////////////////////////////*/
@@ -109,3 +124,23 @@ function confirm_delete() {
   return confirm('êtes-vous sur?');
 }
 
+/****************** COOKIE *******************/
+
+let cookieModal = document.querySelector(".cookie-consent-modal")
+let cancelCookieBtn = document.querySelector(".btn-cookie.cancel")
+let acceptCookieBtn = document.querySelector(".btn-cookie.accept")
+
+cancelCookieBtn.addEventListener("click", function (){
+    cookieModal.classList.remove("active")
+})
+acceptCookieBtn.addEventListener("click", function (){
+    cookieModal.classList.remove("active")
+    localStorage.setItem("cookieAccepted", "yes")
+})
+
+setTimeout(function (){
+    let cookieAccepted = localStorage.getItem("cookieAccepted")
+    if (cookieAccepted != "yes"){
+        cookieModal.classList.add("active")
+    }
+}, 2000)

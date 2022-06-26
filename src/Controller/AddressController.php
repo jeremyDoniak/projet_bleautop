@@ -15,8 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class AddressController extends AbstractController
 {
@@ -138,7 +140,6 @@ class AddressController extends AbstractController
     #[Route('/profile/address/create', name: 'profile_address_create')]
     public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService)
     {
-        $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
         $cart = $cartService->getCart();
         $address = new Address();
         $form = $this->createForm(UserAddressType::class, $address);
@@ -151,10 +152,10 @@ class AddressController extends AbstractController
             $manager->flush();
             $this->addFlash('success', 'L\'adresse a bien été ajoutée');
 
-            if ($cart !== null){
-                return $this->redirectToRoute('profile_order_recap');
+            if ($cart === null){
+                return $this->redirectToRoute('profile_address');
             }
-            return $this->redirect($referer);
+            return $this->redirectToRoute('profile_order_recap');
         }
         return $this->render('profile/addressForm.html.twig', [
             'cart' => $cart,
@@ -169,6 +170,10 @@ class AddressController extends AbstractController
         $address = $addressRepository->find($id);
         $form = $this->createForm(UserAddressType::class, $address);
         $form->handleRequest($request);
+
+        if ($address->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $managerRegistry->getManager();
@@ -189,6 +194,10 @@ class AddressController extends AbstractController
     public function deleteUserAddress(AddressRepository $addressRepository, ManagerRegistry $managerRegistry, int $id)
     {
         $address = $addressRepository->find($id);
+
+        if ($address->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
                 
         $manager = $managerRegistry->getManager();
         $manager->remove($address);

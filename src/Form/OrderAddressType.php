@@ -48,8 +48,9 @@ class OrderAddressType extends AbstractType
             ->add('address', EntityType::class, [
                 'required' => true,
                 'class' => Address::class,
+                'label' => 'Sélectionner votre adresse de livraison :',
                 'query_builder' => function(AddressRepository $address) {
-                    return $address->getAdresseClient($this->getUser());
+                    return $address->getAddressCustomer($this->getUser());
                 },
                 
                 'choice_label' => function ($address) {

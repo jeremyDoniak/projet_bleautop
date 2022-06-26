@@ -65,4 +65,12 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/Politique-de-confidentialité', name: 'pdc')]
+    public function pdc(): Response
+    {
+        return $this->render('/home/pdc.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
 }

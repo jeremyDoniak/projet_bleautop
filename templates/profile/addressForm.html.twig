@@ -3,26 +3,26 @@
 {% block title %}adresses{% endblock %}
 
 {% block body %}
-    <section class="user">
+    <section class="adderssform">
         {{ form_start(addressForm) }}
-
+            
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-3 col-sm-12">
                     {{ form_row(addressForm.name) }}
                 </div>
-                <div class="col-9">
+                <div class="col-md-9 col-sm-12">
                     {{ form_row(addressForm.street) }}
                 </div>
             </div>
             
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     {{ form_row(addressForm.complement) }}
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-sm-12">
                     {{ form_row(addressForm.zip) }}
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-sm-12">
                     {{ form_row(addressForm.city) }}
                 </div>
             </div>

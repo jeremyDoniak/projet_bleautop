@@ -3,7 +3,8 @@
 {% block title %}informations utilisateur{% endblock %}
 
 {% block body %}
-    <section class="user">
+<main class="container-fluid">
+    <section class="addressform">
         <span class="row py-3 baseflash">
             <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
@@ -16,8 +17,8 @@
             </span>
         </span>
         <h1>Mes informations</h1>
-    
-        <table class="table text-center table-hover table-sm">
+
+        <table class="table text-center table-hover table-sm mytable mytablemax">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -49,10 +50,75 @@
             </tbody>
         </table>
     
+        <table class="table text-center table-hover table-sm mytable mytablemin">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    {# <th>Téléphone</th>
+                    <th>Entreprise</th>
+                    <th>Adresse(s)</th> #}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr class="align-middle">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        {# <td>{{ user.phone|default(' ') }}</td>
+                        <td>{{ user.company|default(' ') }}</td>
+                        <td>
+                            {% for address in user.addresses %}
+                                <ul>
+                                    <li>{{ address.name }}</li>
+                                </ul>
+                            {% endfor %}
+                        </td> #}
+
+                        <td class="align-middle">
+                            <a href="{{ path('profile_update') }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+
+        <table class="table text-center table-hover table-sm mytable mytablemin">
+            <thead>
+                <tr>
+                    {# <th>Nom</th>
+                    <th>Email</th> #}
+                    <th>Téléphone</th>
+                    <th>Entreprise</th>
+                    <th>Adresse(s)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr class="align-middle">
+                        {# <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td> #}
+                        <td>{{ user.phone|default(' ') }}</td>
+                        <td>{{ user.company|default(' ') }}</td>
+                        <td>
+                            {% for address in user.addresses %}
+                                <ul>
+                                    <li>{{ address.name }}</li>
+                                </ul>
+                            {% endfor %}
+                        </td>
+
+                        <td class="align-middle">
+                            <a href="{{ path('profile_update') }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    
         <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('profile_index') }}" class="btn btn-danger m-3">Retour</a>
-            <a href="{{ path('profile_address_create') }}" class="btn btn-success m-3">Ajouter une adresse</a>
+            <a href="{{ path('profile_index') }}" class="btn m-3">Retour</a>
+            <a href="{{ path('profile_address_create') }}" class="btn_shape btn-success m-3">Ajouter une adresse</a>
         </div>
     </section>
+</main>
 
 {% endblock %}

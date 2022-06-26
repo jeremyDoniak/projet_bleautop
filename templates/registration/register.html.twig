@@ -4,34 +4,35 @@
 
 {% block body %}
     <main class="container-fluid">
-        
-        <span class="row py-3 baseflash">
-            <span class="col-8 offset-2">
-                {% for label, messages in app.flashes %}
-                    {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
-                            {{ message }}
-                        </div>
+        <section class="register">
+            <span class="row py-3 baseflash">
+                <span class="col-8 offset-2">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </span>
             </span>
-        </span>
-
-        <div class="row py-5">
-            <div class="col-4 offset-4">
-                {{ form_start(registrationForm) }}
-                    {{ form_row(registrationForm.name) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.plainPassword) }}
-                    {{ form_row(registrationForm.company) }}
-                    {{ form_row(registrationForm.phone) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-success">Valider</button>
-                    </div>
-                {{ form_end(registrationForm) }}
+    
+            <div class="row py-5">
+                <div class="col-12">
+                    {{ form_start(registrationForm) }}
+                        {{ form_row(registrationForm.name) }}
+                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.plainPassword) }}
+                        {{ form_row(registrationForm.company) }}
+                        {{ form_row(registrationForm.phone) }}
+                        {{ form_row(registrationForm.agreeTerms) }}
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn_shape btn-success">Valider</button>
+                        </div>
+                    {{ form_end(registrationForm) }}
+                </div>
             </div>
-        </div>
+        </section>
 
     </main>
 {% endblock %}

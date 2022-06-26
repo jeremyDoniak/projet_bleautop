@@ -5,11 +5,22 @@
 {% block body %}
 
     <section class="renovation">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </span>
+        </span>
         <h1>Nos offres de rénovation</h1>
-        <div class="card_produit_container">
+        <div class="card_produit_container_renov">
             {% for product in products %}
                 {% if product.category.name == "renovation" %}
-                    <div class="card_produit">
+                    <div class="card_produit_renov">
                         <div>
                             <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
                         </div>
@@ -17,17 +28,26 @@
                             <h3>{{ product.name }}</h3>
                         </div>
                         <div>
-                            <p><b>{{ product.price }} €</b></p>
+                            <p>A partir de: <b>{{ product.price }} €</b></p>
+                            {% if product.types is null %}
+                            <p class="d-none">Types: {{ product.types.name|default(' ') }}</p>
+                            {% else %}
+                            <p>Types: {{ product.types.name|default(' ') }}</p>
+                            <p>Taille: {{ product.size.name|default(' ') }}</p>
+                            <p>Couleur: {{ product.color.name|default(' ') }}</p>
+                            <p>Angle: {{ product.angle.name|default(' ') }}</p>
+                            <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                            {% endif %}
                         </div>
-                        <div class="check_condition">
+                        {# <div class="check_condition">
                             <span>
                                 <input type="checkbox" name="check" required>
                                 <label for="check">J’ai lu et j’accepte les conditions énoncé dans la documentation de validation disponible ci-dessous.</label>
                             </span>
+                        </div> #}
+                        <div class="text-end d-flex align-items-stretch">
+                            <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success">Ajouter au panier</a>
                         </div>
-                        <div>
-                                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success">Ajouter au panier</a>
-                            </div>
                     </div>
                 {% endif %}
             {% endfor %}

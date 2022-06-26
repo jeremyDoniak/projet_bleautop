@@ -58,7 +58,7 @@ p {
 /****************** HEADER *******************/
 
 header {
-    width: 100%;
+    width: 100vw;
     height: 80px;
     max-height: 80px;
     background-color: #303031;
@@ -78,15 +78,32 @@ header {
     }
 
     .logos {
-        height: 80px;
         max-height: 80px;
+        max-width: 300px;
         display: flex;
         align-items: center;
+    }
+
+    .logos a {
+        width: 75%;
+        margin-right: 0.8em;
+    }
+
+    .logos img {
+        width: 100%;
+    }
+
+    nav {
+        position: relative;
+
     }
 
     nav ul {
         margin: 0;
         padding: 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
 
     nav li {
@@ -96,7 +113,8 @@ header {
 
         li a {
             border-radius: 20px;
-            padding: 0.5em 1em 0.5em 1em;
+            padding: 0.5em 0.4em 0.5em 0.4em;
+            margin: 0 0.3em 0 0.3em;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
             color: #B5C1BA !important;
@@ -108,6 +126,68 @@ header {
         transition: all 0.3s ease-in-out;
         cursor: pointer;
     }
+
+    nav input {
+        display: none;
+    }
+    
+    @media screen and (max-width: 992px) {
+        nav ul {
+            margin: 0;
+            padding: 0;
+            /* width: 100vh; */
+            background-color: #303031;
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            align-items: center;
+        }
+    
+            li a {
+                border-radius: 20px;
+                padding: 0.2em;
+                margin: 0.2em;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+                color: #B5C1BA !important;
+            }
+    }
+
+    @media screen and (min-width: 992px) {
+        .hamburger {
+            display: none;
+        }
+    }
+
+    [id=nav-hamburger]:checked + ul {
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        flex-wrap: wrap;
+        width: 80vw;
+        padding: 0.8rem;
+    }
+
+    svg rect {
+        fill: #B5C1BA;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+
+.baseflash {
+    position: relative;
+}
+
+.baseflash div{
+    display: flex;
+    justify-content:center;
+}
 
 
 /****************** FOOTER *******************/

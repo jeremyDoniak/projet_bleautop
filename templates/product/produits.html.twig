@@ -42,13 +42,18 @@
                     <h3>{{ product.name }}</h3>
                 </div>
                 <div>
+                    <p>A partir de: <b>{{ product.price }} €</b></p>
+                    {% if product.types is null %}
+                    <p class="d-none">Types: {{ product.types.name|default(' ') }}</p>
+                    {% else %}
                     <p>Types: {{ product.types.name|default(' ') }}</p>
                     <p>Taille: {{ product.size.name|default(' ') }}</p>
                     <p>Couleur: {{ product.color.name|default(' ') }}</p>
                     <p>Angle: {{ product.angle.name|default(' ') }}</p>
                     <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                    {% endif %}
                 </div>
-                <div class="text-end btn-products">
+                <div class="text-end d-flex align-items-stretch">
                     <a href="{{ path('produit', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">+ info</a>
                     <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success btn-sm">Ajouter au panier</a>
                 </div>

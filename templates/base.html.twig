@@ -33,7 +33,7 @@
             <div id="header_container">
                 <div class="logos">
                     <a href="{{ path('home') }}">
-                        <img class="logo_bleautop" src="{{ asset('img/logo_bleautop_gris_web.png') }}" alt="logo bleautop">
+                        <img class="logo_bleautop" src="{{ asset('img/nav_bleautop_logo_gris.png') }}" alt="logo bleautop">
                     </a>
             
                     <div class="logos_sociaux">
@@ -97,17 +97,20 @@
             </div>
            {{ render(controller('App\\Controller\\CartController::getNavCart')) }}
         </header>
-        {# <div class="baseflash row py-5">
-            <div class="col-8 offset-2">
-                {% for label, messages in app.flashes %}
-                    {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
+        
+        <div class="cookie-consent-modal">
+            <div class="content">
+                <h1>Ce site web utilise des cookies</h1>
+                <p>Nous utilisons des cookies pour personnaliser le contenu.<br>
+                    Pour consulter ou modifier les paramètres de consentement à tout moment,
+                    veuillez consulter notre politique de confidentialité en utilisant le lien ci-dessous.</p>
+                <div class="btns-cookie">
+                    <button class="btn-cookie cancel">cancel</button>
+                    <button class="btn-cookie accept btn_shape btn-success">accept</button>
+                </div>
+                <a href="{{ path('pdc') }}">Politique de confidentialité</a>
             </div>
-        </div> #}
+        </div>
 
         {% block body %}{% endblock %}
 

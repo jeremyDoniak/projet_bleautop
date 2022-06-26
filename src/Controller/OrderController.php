@@ -34,6 +34,11 @@ class OrderController extends AbstractController
     {
         $orderLine = $orderLineRepository->findBy(['order_number' => $id]);
         $order = $orderRepository->findOneBy(['id' => $id]);
+
+        if ($order->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         return $this->render('profile/orderLine.html.twig', [
             'orderLines' => $orderLine,
             'orders' => $order,

@@ -4,8 +4,19 @@
 
 {% block body %}
 
-<section class="cart">
-    <main class="container-fluid">
+<main class="container-fluid">
+    <section class="cart">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </span>
+        </span>
         <div class="row">
             <div class="col-12">
                 <h2 class="my-3 text-center">Mon panier</h2>
@@ -54,6 +65,7 @@
                 {% endif %}
             </div>
         </div>
+        <h3 class="m-3">Ces Produits peuvent vous intéresser</h3>
         <div class="card_produits_container">
             {% for product in latestProducts %}
                 <div class="card_produits">
@@ -64,11 +76,15 @@
                         <h3>{{ product.name }}</h3>
                     </div>
                     <div>
+                        {% if product.types is null %}
+                        <p class="d-none">Types: {{ product.types.name|default(' ') }}</p>
+                        {% else %}
                         <p>Types: {{ product.types.name|default(' ') }}</p>
                         <p>Taille: {{ product.size.name|default(' ') }}</p>
                         <p>Couleur: {{ product.color.name|default(' ') }}</p>
                         <p>Angle: {{ product.angle.name|default(' ') }}</p>
                         <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                        {% endif %}
                     </div>
                     <div class="text-end btn-products">
                         <a href="{{ path('produits', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">Voir</a>
@@ -77,8 +93,7 @@
                 </div>
             {% endfor %}
         </div>
-    </main>
-
-</section>
+    </section>
+</main>
 
 {% endblock %}

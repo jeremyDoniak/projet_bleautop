@@ -42,7 +42,7 @@ class ContactType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => false,
+                'label' => 'Vous affirmez avoir pris connaissance de notre Politique de confidentialité.',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter nos conditions générales d\'utilisation.',

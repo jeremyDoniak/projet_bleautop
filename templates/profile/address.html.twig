@@ -3,53 +3,58 @@
 {% block title %}adresses{% endblock %}
 
 {% block body %}
-    <section class="user">
-        <div class="row py-5">
-            <div class="col-8 offset-2">
+<main class="container-fluid">
+    <section class="addressform">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                             {{ message }}
                         </div>
                     {% endfor %}
                 {% endfor %}
+            </span>
+        </span>
+        <h1>Liste des différentes adresses</h1>
+        <div class="row">
+            <div class="col-12">
+                <table class="table text-center table-hover table-sm align-middle mytable">
+                    <thead>
+                        <tr class="fw-bold">
+                            {# <th>N°</th> #}
+                            <th>Nom de l'adresse</th>
+                            <th>Adresse</th>
+                            <th>Complément d'adresse</th>
+                            <th>Code Postal</th>
+                            <th>Ville</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for address in addresses %}
+                            <tr>
+                                {# <td>{{ loop.index }}</td> #}
+                                <td>{{ address.name }}</td>
+                                <td>{{ address.street }}</td>
+                                <td>{{ address.complement }}</td>
+                                <td>{{ address.zip }}</td>
+                                <td>{{ address.city }}</td>
+                                <td>
+                                    <a href="{{ path('profile_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                                    <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger" onclick="return confirm_delete()"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-        <h1>Liste des différentes adresses</h1>
-
-        <table class="table text-center table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>N°</th>
-                    <th>Nom de l'adresse</th>
-                    <th>Adresse</th>
-                    <th>Complément d'adresse</th>
-                    <th>Code Postal</th>
-                    <th>Ville</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for address in addresses %}
-                    <tr class="align-middle">
-                        <td>{{ loop.index }}</td>
-                        <td>{{ address.name }}</td>
-                        <td>{{ address.street }}</td>
-                        <td>{{ address.complement }}</td>
-                        <td>{{ address.zip }}</td>
-                        <td>{{ address.city }}</td>
-                        <td>
-                            <a href="{{ path('profile_address_update', {'id': address.id}) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                            <a href="{{ path('profile_address_delete', {'id': address.id}) }}" class="text-danger" onclick="return confirm_delete()"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
         <div class="d-flex justify-content-end my-5">
-            <a href="{{ path('profile_index') }}" class="btn me-3">Retour</a>
-            <a href="{{ path('profile_address_create') }}" class="btn">Ajouter une adresse</a>
+            <a href="{{ path('profile_index') }}" class="btn m-3">Retour</a>
+            <a href="{{ path('profile_address_create') }}" class="btn_shape btn-success m-3">Ajouter une adresse</a>
         </div>
     </section>
+</main>
+
 {% endblock %}

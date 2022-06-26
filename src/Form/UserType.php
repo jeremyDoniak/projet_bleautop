@@ -37,7 +37,7 @@ class UserType extends AbstractType
                     'placeholder' => 'Ex.: johndoe@gmail.com'
                 ]
             ])
-            ->add('phone', IntegerType::class, [
+            ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
                 'attr' => [

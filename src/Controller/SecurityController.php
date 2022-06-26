@@ -84,13 +84,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/forgotten-password/{token}', name: 'reset_password')]
-    public function resetPassword(
-        string $token,
-        Request $request,
-        EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $userPasswordHasher,
-        UserRepository $userRepository,
-    ): Response
+    public function resetPassword(string $token, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, UserRepository $userRepository): Response
     {
         $user = $userRepository->findOneByResetToken($token);
 

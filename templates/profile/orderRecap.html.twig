@@ -3,7 +3,7 @@
 {% block title %}votre commandes{% endblock %}
 
 {% block body %}
-    <section class="user">
+    <section class="order">
         <span class="row py-3 baseflash">
             <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
@@ -16,10 +16,14 @@
             </span>
         </span>
         <h1>Votre commande</h1>
-        {{ form_start(form)}}
-            {{form_row(form.address, {'label':'Sélectionner votre adresse de livraison :'}) }}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-6" style="width:auto;">
+                {{ form_row(form.address) }}
+            </div>
+        </div>
 
-        <table class="table align-middle">
+        <table class="table align-middle table-responsive">
             <thead class="text-center table-secondary">
                 <tr class="fw-bold">
                     <th>Produit</th>
@@ -48,7 +52,7 @@
                 </tfoot>
         </table>
         <div class="d-flex justify-content-end my-5">
-            <a href="{{ path('profile_address_create') }}" class="btn btn-primary me-3">Ajouter une adresse</a>
+            <a href="{{ path('profile_address_create') }}" class="btn me-3">Ajouter une adresse</a>
             <button class="btn_shape btn-success btn-sm" type="submit">Payer la commande</button>
         </div>
         {{ form_end(form)}}

@@ -18,30 +18,30 @@
             <h1>Mon profil</h1>
             {% if app.user %}
             <div>
+                {% if is_granted('ROLE_ADMIN') %}
                 <div class="btn">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('admin') }}">Admin</a>
-                    {% endif %}
+                    <a href="{{ path('admin') }}">Admin</a>
                 </div>
+                {% endif %}
             {% endif %}
             </div>
             <div class="card_user_container">
                 <div class="card_user">
                     <h2>Mes informations</h2>
-                    <div class="btn">
-                        <a href="{{ path('profile') }}">+ info</a>
+                    <div>
+                        <a href="{{ path('profile') }}" class="btn m-3">+ info</a>
                     </div>
                 </div>
                 <div class="card_user">
                     <h2>Mes adresses</h2>
-                    <div class="btn">
-                        <a href="{{ path('profile_address') }}">+ info</a>
+                    <div>
+                        <a href="{{ path('profile_address') }}" class="btn m-3">+ info</a>
                     </div>
                 </div>
                 <div class="card_user">
                     <h2>Mes commandes</h2>
-                    <div class="btn">
-                        <a href="{{ path('profile_order') }}">+ info</a>
+                    <div>
+                        <a href="{{ path('profile_order') }}" class="btn m-3">+ info</a>
                     </div>
                 </div>
             </div>
