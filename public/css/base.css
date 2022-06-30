@@ -66,7 +66,7 @@ p {
 }
 
 .btn_shape {
-    color: #303031;
+    color: #fff;
     border-radius: 2em;
     padding: 1em 2em 1em 2em;
     margin: 0px 5px 0px 5px;
@@ -75,6 +75,7 @@ p {
     display: flex;
     justify-content:center;
     align-items:center;
+    border: hidden;
 }
 
 .btn {
@@ -114,6 +115,7 @@ p {
     display: flex;
     justify-content:center;
     align-items:center;
+    text-align:center;
 }
 
 .btn:hover a{
@@ -170,12 +172,16 @@ header {
     }
 
     .logos a {
-        width: 75%;
-        margin-right: 0.8em;
+        margin-right: 0.3rem;
     }
 
-    .logos_sociaux {
+    .logos_sociaux a, .logos_sociaux-hamburger a {
+        margin: 0.3rem 0.3rem 0rem 0.3rem;
+    }
+
+    .logos_sociaux, .logos_sociaux-hamburger {
         display: flex;
+        align-items: flex-end;
         flex: 1;
     }
 
@@ -183,9 +189,26 @@ header {
         width: 100%;
     }
 
-        .logos_sociaux img {
-            width: 1.2em;
+    .logos_sociaux img, .logos_sociaux-hamburger img {
+        width: 1.2rem;
+    }
+
+    @media screen and (min-width: 992px) {
+        .logos_sociaux-hamburger {
+            display: none;
         }
+
+    }
+
+    @media screen and (max-width: 992px) {
+        .logos_sociaux {
+            display: none;
+        }
+
+        .logos a {
+            margin-right: 6rem;
+        }
+    }
 
     #cart {
         border: #B5C1BA solid 2px;
@@ -231,6 +254,10 @@ header {
             cursor: pointer;
             color: #B5C1BA !important;
         }
+
+        li #cart {
+            padding: 0.5em 0.8em 0.5em 0.4em;
+        }
         
         nav a:hover, #cart:hover, .dropdown-item:hover {
             background-color: #B5C1BA ;
@@ -266,7 +293,7 @@ header {
             }
         
                 li a, li #cart {
-                    border-radius: 20px;
+                    border-radius: 15px;
                     padding: 0.2em;
                     margin: 0.2em;
                     transition: all 0.3s ease-in-out;
@@ -275,7 +302,7 @@ header {
                 }
 
                 li #cart {
-                    padding: 0.5em;
+                    padding: 0.3em 0.6em 0.3em 0.3em;
                 }
         }
     
@@ -307,6 +334,7 @@ header {
     background-color: rgba(48, 48, 49, 0.8);
     max-width: 100%;
     min-height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
     display: flex;
     justify-content: flex-end;
 }
@@ -321,6 +349,7 @@ header {
     flex-direction: column;
     justify-content:space-between;
     position: relative;
+    overflow: auto;
 }
 
     .cart_container div{
@@ -342,6 +371,7 @@ header {
         .cart_resume {
             justify-content: center;
             min-height: calc(100vh - 80px);
+            max-height: calc(100vh - 80px);
         }
 
         .cart_container {
@@ -349,6 +379,7 @@ header {
             width:80%;
             top: 80px;
             height: calc(100vh - 162px);
+            max-height: calc(100vh - 162px);
         }
     }
 
@@ -441,7 +472,8 @@ footer p {
 
 .sec_carousel {
     max-width: 100%;
-    height: 460px;
+    min-height: 230px;
+    max-height: 460px;
     background-color: #f5f5f5;
     padding: 0 10% 0 10%;
     position: relative;
@@ -451,14 +483,14 @@ footer p {
 }
 
     .arrow_left p, .arrow_right p{
-        font-size: 80px;
+        font-size: 6rem;
         color: #B5C1BA;
         cursor: pointer;
         z-index: 8000;
     }
 
     .arrow_left p:hover, .arrow_right p:hover{
-        font-size: 80px;
+        font-size: 6rem;
         color: #303031;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
@@ -499,7 +531,7 @@ footer p {
         }
 
             .carousel_item p {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 color: #B5C1BA ;
                 text-align: center;
                 background-color: rgba(48, 48, 49, 0.8);
@@ -585,6 +617,11 @@ footer p {
 .plus .btn {
     /* white-space: nowrap; */
     width: 60%;
+}
+
+.plus>div {
+    display: contents;
+    justify-content:center;
 }
 
 /****************** SECTION-4 ABOUT *******************/
@@ -968,9 +1005,8 @@ iframe {
     justify-content: space-evenly;
 } */
 
-.form_contact .btn {
+.form_contact .btn_shape {
     border: hidden;
-    margin: 2em 0;
 }
 
 .form_contact form span {
@@ -1023,11 +1059,7 @@ iframe {
     min-height: calc(100vh - 82px);
     background-color:#f5f5f5;
     max-width: 100%;
-    padding: 80px 10% 0 10%;
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 80px 10%;
 }
 
 .produit div {
@@ -1065,7 +1097,7 @@ iframe {
         justify-content:center;
     }
 
-.produit a:hover, .produit .active {
+.produit li a:hover, .produit .active {
     background-color: #B5C1BA;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
@@ -1189,7 +1221,6 @@ iframe {
 }
 
 .card_produits {
-    max-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1285,6 +1316,11 @@ iframe {
 .cart table img {
     max-width: 100%;
     max-height: 120px;
+}
+
+.cart b {
+    color: #303031 !important;
+    font-size: 2rem;
 }
 
 /*//////////////////////////////// PAGE - REGISTER ADDRESS ////////////////////////////////*/

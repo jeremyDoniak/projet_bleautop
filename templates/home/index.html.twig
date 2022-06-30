@@ -20,11 +20,11 @@
         <h1>'Grimper Bleautop, <br> grimper Fontainebleau'</h1>
     </div>
     <div>
-        <div class="btn btnleft">
-            <a href="{{ path('produits') }}">Produits</a>
+        <div>
+            <a href="{{ path('produits') }}" class="btn btnleft shadow-none">Produits</a>
         </div>
-        <div class="btn btnright">
-            <a href="{{ path('renovation') }}">Rénovation</a>
+        <div>
+            <a href="{{ path('renovation') }}" class="btn btnright shadow-none">Rénovation</a>
         </div>
     </div>
 </section>
@@ -39,8 +39,8 @@
                 <img src="{{ asset('img/' ~ product.img) }}" alt="photo {{ product.name }}">
                 <span>
                     <p>{{ product.name }}</p>
-                    <div class="btn">
-                        <a href="{{ path('produit', {'id': product.id }) }}">+ infos</a>
+                    <div>
+                        <a href="{{ path('produit', {'id': product.id }) }}" class="btn shadow-none">+ infos</a>
                     </div>
                 </span>
             </div>
@@ -68,8 +68,8 @@
         <div class="plus">
             <p>Engagé dans le pacte “d’économie circulaire” de l’ADEM, Bleautop propose aussi une solution novatrice : la rénovation des prises et volumes plastique !</p>
             <p>Nous proposons des forfaits de rénovations de prises et volumes d’escalades usagés.</p>
-            <div class="btn">
-                <a href="{{ path('renovation') }}">En savoir plus</a>
+            <div>
+                <a href="{{ path('renovation') }}" class="btn shadow-none">En savoir plus</a>
             </div>
         </div>
     </div>

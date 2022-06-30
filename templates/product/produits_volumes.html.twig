@@ -45,17 +45,33 @@
                 <div>
                     <p>A partir de: <b>{{ product.price }} €</b></p>
                     {% if product.types is null %}
-                    <p class="d-none">Types: {{ product.types.name|default(' ') }}</p>
+                    <p class="d-none">Typologie: {{ product.types.name|default(' ') }}</p>
                     {% else %}
-                    <p>Types: {{ product.types.name|default(' ') }}</p>
+                    <p>Typologie: {{ product.types.name|default(' ') }}</p>
+                    {% endif %}
+                    {% if product.size is null %}
+                    <p class="d-none">Taille: {{ product.size.name|default(' ') }}</p>
+                    {% else %}
                     <p>Taille: {{ product.size.name|default(' ') }}</p>
+                    {% endif %}
+                    {% if product.color is null %}
+                    <p class="d-none">Couleur: {{ product.color.name|default(' ') }}</p>
+                    {% else %}
                     <p>Couleur: {{ product.color.name|default(' ') }}</p>
-                    <p>Angle: {{ product.angle.name|default(' ') }}</p>
-                    <p>Trâme: {{ product.drilling.name|default(' ') }}</p>
+                    {% endif %}
+                    {% if product.angle is null %}
+                    <p class="d-none">Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
+                    {% else %}
+                    <p>Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
+                    {% endif %}
+                    {% if product.drilling is null %}
+                    <p class="d-none">Trâme (espace 10cm): {{ product.drilling.name|default(' ') }}</p>
+                    {% else %}
+                    <p>Trâme (10cm): {{ product.drilling.name|default(' ') }}</p>
                     {% endif %}
                 </div>
                 <div class="text-end d-flex align-items-stretch">
-                    <a href="{{ path('produit', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">+ info</a>
+                    <a href="{{ path('produit', {'id': product.id}) }}" class="btn btn-sm shadow-none">+ info</a>
                     <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn_shape btn-success btn-sm">Ajouter au panier</a>
                 </div>
             </div>

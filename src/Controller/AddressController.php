@@ -32,7 +32,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/admin/address/create', name: 'admin_address_create')]
-    public function create(Request $request, ManagerRegistry $managerRegistry)
+    public function create(Request $request, ManagerRegistry $managerRegistry, CartService $cartService): Response
     {
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
@@ -50,7 +50,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/admin/address/update/{id}', name: 'admin_address_update')]
-    public function update(AddressRepository $addressRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+    public function update(AddressRepository $addressRepository, int $id, Request $request, ManagerRegistry $managerRegistry): Response
     {
         $address = $addressRepository->find($id);
         $form = $this->createForm(AddressType::class, $address);
@@ -71,7 +71,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/admin/address/delete/{id}', name: 'admin_address_delete')]
-    public function delete(AddressRepository $addressRepository, int $id, ManagerRegistry $managerRegistry)
+    public function delete(AddressRepository $addressRepository, int $id, ManagerRegistry $managerRegistry): Response
     {
         $address = $addressRepository->find($id);
                 
@@ -138,7 +138,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/profile/address/create', name: 'profile_address_create')]
-    public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService)
+    public function createUserAddress(Request $request, ManagerRegistry $managerRegistry, CartService $cartService): Response
     {
         $cart = $cartService->getCart();
         $address = new Address();
@@ -154,8 +154,9 @@ class AddressController extends AbstractController
 
             if ($cart === null){
                 return $this->redirectToRoute('profile_address');
+            } else {
+                return $this->redirectToRoute('profile_order_recap');
             }
-            return $this->redirectToRoute('profile_order_recap');
         }
         return $this->render('profile/addressForm.html.twig', [
             'cart' => $cart,
@@ -164,7 +165,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/profile/address/update/{id}', name: 'profile_address_update')]
-    public function updateUserAddress(Request $request, ManagerRegistry $managerRegistry, AddressRepository $addressRepository, int $id, CartService $cartService)
+    public function updateUserAddress(Request $request, ManagerRegistry $managerRegistry, AddressRepository $addressRepository, int $id, CartService $cartService): Response
     {
         $cart = $cartService->getCart();
         $address = $addressRepository->find($id);
@@ -191,7 +192,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/profile/address/delete/{id}', name: 'profile_address_delete')]
-    public function deleteUserAddress(AddressRepository $addressRepository, ManagerRegistry $managerRegistry, int $id)
+    public function deleteUserAddress(AddressRepository $addressRepository, ManagerRegistry $managerRegistry, int $id): Response
     {
         $address = $addressRepository->find($id);
 

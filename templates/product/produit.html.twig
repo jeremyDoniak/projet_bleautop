@@ -36,25 +36,52 @@
         <div>
             <img src="{{ asset('img/' ~ product.img) }}" alt="photo principale {{ product.name }}">
         </div>
-        <div>
-            <h3>{{ product.name }}</h3>
-        </div>
-        <div>
-            <p>------------------------------------------</p>
-            <p>A partir de: <b>{{ product.price }} €</b></p>
-            <p>------------------------------------------</p>
-            {% if product.types is null %}
-            <p class="d-none">Typologie: {{ product.types.name|default(' ') }}</p>
-            {% else %}
-            <p>longueur : {{ product.length }} cm / largeur : {{ product.width }} cm / hauteur : {{ product.height }} cm</p>
-            <p>------------------------------------------</p>
-            <p>Typologie: {{ product.types.name|default(' ') }}</p>
-            <p>Taille: {{ product.size.name|default(' ') }}</p>
-            <p>Couleur: {{ product.color.name|default(' ') }}</p>
-            <p>Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
-            <p>Option trâme (espace 10cm): {{ product.drilling.name|default(' ') }}</p>
-            <p>Description: {{ product.description|default(' ') }}</p>
-            {% endif %}
+        <div class="description_produit">
+            <div>
+                <h3>{{ product.name }}</h3>
+            </div>
+            <div>
+                <hr>
+                <p>A partir de: <b>{{ product.price }} €</b></p>
+                <hr>
+                {% if product.length is null %}
+                <p class="d-none">longueur : {{ product.length }} cm / largeur : {{ product.width }} cm / hauteur : {{ product.height }} cm</p>
+                <hr class="d-none">
+                {% else %}
+                <p>longueur : {{ product.length }} cm / largeur : {{ product.width }} cm / hauteur : {{ product.height }} cm</p>
+                <hr>
+                {% endif %}
+                {% if product.types is null %}
+                <p class="d-none">Typologie: {{ product.types.name|default(' ') }}</p>
+                {% else %}
+                <p>Typologie: {{ product.types.name|default(' ') }}</p>
+                {% endif %}
+                {% if product.size is null %}
+                <p class="d-none">Taille: {{ product.size.name|default(' ') }}</p>
+                {% else %}
+                <p>Taille: {{ product.size.name|default(' ') }}</p>
+                {% endif %}
+                {% if product.color is null %}
+                <p class="d-none">Couleur: {{ product.color.name|default(' ') }}</p>
+                {% else %}
+                <p>Couleur: {{ product.color.name|default(' ') }}</p>
+                {% endif %}
+                {% if product.angle is null %}
+                <p class="d-none">Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
+                {% else %}
+                <p>Angle d’ouverture: {{ product.angle.name|default(' ') }}</p>
+                {% endif %}
+                {% if product.drilling is null %}
+                <p class="d-none">Option trâme (espace 10cm): {{ product.drilling.name|default(' ') }}</p>
+                {% else %}
+                <p>Option trâme (espace 10cm): {{ product.drilling.name|default(' ') }}</p>
+                {% endif %}
+                {% if product.description is null %}
+                <p class="d-none">Description: {{ product.description|default(' ') }}</p>
+                {% else %}
+                <p>Description: {{ product.description|default(' ') }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-center">

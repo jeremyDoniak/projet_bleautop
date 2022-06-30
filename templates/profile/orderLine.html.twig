@@ -3,24 +3,27 @@
 {% block title %}commandes{% endblock %}
 
 {% block body %}
-    <section class="user">
-        <div class="row py-5">
-            <div class="col-8 offset-2">
+<main class="container-fluid">
+    <section class="cart">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
                             {{ message }}
                         </div>
                     {% endfor %}
                 {% endfor %}
-            </div>
-        </div>
+            </span>
+        </span>
+        <div class="row">
+            <div class="col-12">
         <h1>Détails de la commande n° {{ orders.id }}</h1>
 
-        <table class="table text-center table-hover table-sm table-responsive">
-            <thead>
-                <tr>
-                    <th>Produit</th>
+        <table class="table align-middle">
+            <thead class="text-center table-secondary">
+                <tr class="fw-bold">
+                    <th class="text-start">Produit</th>
                     <th>Quantité</th>
                     <th>Prix unitaire</th>
                     <th>Sous-total</th>
@@ -28,24 +31,25 @@
             </thead>
             <tbody>
                 {% for line in orderLines %}
-                    <tr class="align-middle">
+                    <tr>
                         <td><img src="{{ asset('img/' ~ line.product.img) }}" alt="photo principale {{ line.product.name }}" class="me-3">
                             {{ line.product.name }} {{ line.product.types.name|default(' ') }} {{ line.product.size.name|default(' ') }} {{ line.product.color.name|default(' ') }} {{ line.product.angle.name|default(' ') }} {{ line.product.drilling.name|default(' ') }}</td>
-                        <td>{{ line.quantity }}</td>
-                        <td>{{ line.product.price }} €</td>
-                        <td>{{ (line.product.price * line.quantity)|number_format(0, ',', ' ') }} €</td>
+                        <td class="text-center">{{ line.quantity }}</td>
+                        <td class="text-center">{{ line.product.price }} €</td>
+                        <td class="text-center">{{ (line.product.price * line.quantity)|number_format(0, ',', ' ') }} €</td>
                     </tr>
                     {% endfor %}
-                </tbody>
-                    <tfoot class="table-secondary text-end">
-                        <tr class="fw-bold">
-                            <th colspan="12">TOTAL :</th>
-                            <th>{{ orders.amount|number_format(0, ',', ' ') }} €</th>
-                        </tr>
-                    </tfoot>
+            </tbody>
+            <tfoot class="table-secondary text-end">
+                <tr class="fw-bold">
+                    <th colspan="3">TOTAL :</th>
+                    <th class="text-center">{{ orders.amount|number_format(0, ',', ' ') }} €</th>
+                </tr>
+            </tfoot>
         </table>
-        <div class="text-end">
-            <a href="{{ path('profile_order') }}" class="btn btn-outline-secondary btn-sm">Retour</a>
+        <div class="d-flex justify-content-end my-5">
+            <a href="{{ path('profile_order') }}" class="btn me-3 shadow-none">Retour</a>
         </div>
     </section>
+</main>
 {% endblock %}

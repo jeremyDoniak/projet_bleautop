@@ -73,7 +73,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             {% if app.user %}
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bonjour <br> {{ app.user.name }} !</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" maxlength="4">Bonjour {{ app.user.name }} !</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{{ path('profile_index') }}">Mon profil</a>
                                     </li>
@@ -92,6 +92,19 @@
                         <li>
                            <div id="cart"><svg width="24px" height="24px" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="shopping-cart"><rect width="24" height="24" opacity="0"/><path d="M21.08 7a2 2 0 0 0-1.7-1H6.58L6 3.74A1 1 0 0 0 5 3H3a1 1 0 0 0 0 2h1.24L7 15.26A1 1 0 0 0 8 16h9a1 1 0 0 0 .89-.55l3.28-6.56A2 2 0 0 0 21.08 7zm-4.7 7H8.76L7.13 8h12.25z" fill="#B5C1BA"/><circle cx="7.5" cy="19.5" r="1.5" fill="#B5C1BA"/><circle cx="17.5" cy="19.5" r="1.5" fill="#B5C1BA"/></g></g></svg> {{ app.session.get('cart')|length|default('0') }}</div>
                         </li>
+                        <li>
+                            <div class="logos_sociaux-hamburger">
+                                <a href="https://www.instagram.com/" target="_blank">
+                                    <img src="{{ asset('img/logo_instagram_gris_web.png') }}" alt="logo instagram">
+                                </a>
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <img src="{{ asset('img/logo_facebook_gris_web.png') }}" alt="logo facebook">
+                                </a>
+                                <a href="https://twitter.com/" target="_blank">
+                                    <img src="{{ asset('img/logo_twitter_gris_web.png') }}" alt="logo twitter">
+                                </a>
+                            </div>    
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -106,7 +119,7 @@
                     veuillez consulter notre politique de confidentialité en utilisant le lien ci-dessous.</p>
                 <div class="btns-cookie">
                     <button class="btn-cookie cancel">cancel</button>
-                    <button class="btn-cookie accept btn_shape btn-success">accept</button>
+                    <button class="btn-cookie accept btn_shape btn-success shadow-none">accept</button>
                 </div>
                 <a href="{{ path('pdc') }}">Politique de confidentialité</a>
             </div>

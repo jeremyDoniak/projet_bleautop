@@ -3,9 +3,20 @@
 {% block title %}adresses{% endblock %}
 
 {% block body %}
-    <section class="adderssform">
+<main class="container-fluid">
+    <section class="addressform">
+        <span class="row py-3 baseflash">
+            <span class="col-8 offset-2">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light text-center p-3 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </span>
+        </span>
         {{ form_start(addressForm) }}
-            
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     {{ form_row(addressForm.name) }}
@@ -32,8 +43,9 @@
                     <button class="btn_shape btn-success m-3">Créer et payer</button>
                     {% else %}
                     <button class="btn_shape btn-success m-3">Créer / Modifier</button>
-                    {% endif %}
-                </div>
+                {% endif %}
+            </div>
         {{ form_end(addressForm) }}
     </section>
+</main>
 {% endblock %}
